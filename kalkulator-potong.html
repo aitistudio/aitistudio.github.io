@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AITI SYSTEM V7 - Full Financial Detail</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f2f5; padding: 10px; color: #333; }
+        .container { max-width: 550px; margin: auto; }
+        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 15px; }
+        h2 { text-align: center; color: #960000; margin: 0 0 15px 0; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .grid-input { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+        label { display: block; font-size: 11px; font-weight: bold; color: #666; margin-bottom: 3px; text-transform: uppercase; }
+        input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; background: #fafafa; }
+        .btn-main { width: 100%; padding: 15px; background: #960000; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; margin-top: 10px; }
+        
+        #preview-box { width: 100%; min-height: 250px; background: #444; margin: 15px 0; display: flex; align-items: center; justify-content: center; border-radius: 8px; }
+        .sheet { background: white; position: relative; overflow: hidden; }
+        .part { border: 0.2px solid #960000; background: rgba(39, 174, 96, 0.2); position: absolute; box-sizing: border-box; }
+
+        .export-area { display: none; padding: 30px; background: white; border-radius: 10px; border: 1px solid #ddd; }
+        .rincian-title { text-align: center; font-size: 20px; font-weight: bold; color: #444; margin-bottom: 25px; text-transform: uppercase; }
+        .detail-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f0f0f0; font-size: 15px; }
+        
+        .btn-export { flex: 1; padding: 12px; border: none; border-radius: 8px; cursor: pointer; color: white; font-weight: bold; font-size: 13px; margin-top: 10px;}
+        .footer-note { text-align: center; font-size: 11px; color: #aaa; margin-top: 20px; }
+
+        .log-section { background: white; padding: 15px; border-radius: 12px; margin-top: 15px; }
+        .log-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #eee; font-size: 12px; }
+        .btn-prev { background: #3498db; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <h2>AITI KALKULATOR POTONG</h2>
+        <div class="grid-input">
+            <div><label>Nama Pesanan</label><input type="text" id="nama" placeholder="Contoh: Undangan"></div>
+            <div><label>Nama Bahan</label><input type="text" id="bahan" placeholder="Contoh: Art Paper 260 gr"></div>
+        </div>
+        <div class="grid-input">
+            <div><label>Ukuran Bahan (P)</label><input type="number" id="LB"></div>
+            <div><label>Ukuran Bahan (L)</label><input type="number" id="TB"></div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom:10px;">
+            <div><label>Lebar Potong</label><input type="number" id="lk"></div>
+            <div><label>Tinggi Potong</label><input type="number" id="tk"></div>
+            <div><label>Jarak (Bleed)</label><input type="number" id="jarak" value="0" step="0.1"></div>
+        </div>
+        <div class="grid-input">
+            <div><label>Harga Modal/Lembar</label><input type="number" id="hb"></div>
+            <div><label>Harga Jual/Pcs</label><input type="number" id="hj"></div>
+        </div>
+        <button class="btn-main" onclick="hitung()">HITUNG & SIMPAN</button>
+    </div>
+
+    <div id="capture-area" class="export-area">
+        <div class="rincian-title">RINCIAN PRODUKSI</div>
+        <div id="rincian-isi"></div>
+        <div id="preview-box"><div id="visual-sheet" class="sheet"></div></div>
+        <div class="footer-note">Dicetak secara otomatis melalui Aiti Kalkulator Potong</div>
+    </div>
+
+    <div id="export-buttons" style="display:none; gap:10px;">
+        <button class="btn-export" style="background:#e67e22;" onclick="saveImage()">SIMPAN GAMBAR</button>
+        <button class="btn-export" style="background:#e74c3c;" onclick="savePDF()">SIMPAN PDF</button>
+    </div>
+
+    <div class="log-section">
+        <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+            <strong>Riwayat Log (50 Terakhir)</strong>
+            <button onclick="clearLog()" style="font-size:10px; color:red; border:none; background:none; cursor:pointer;">Hapus Log</button>
+        </div>
+        <div id="log-list"></div>
+    </div>
+</div>
+
+<script>
+    function getLayout(W, H, p, l, jarak) {
+        let items = [];
+        let nx = Math.floor(W / (p + jarak));
+        let ny = Math.floor(H / (l + jarak));
+        for(let y=0; y<ny; y++) {
+            for(let x=0; x<nx; x++) {
+                items.push({x: x*(p+jarak), y: y*(l+jarak), w: p, h: l});
+            }
+        }
+        let sisaX = W - (nx * (p+jarak));
+        if (sisaX >= l) {
+            let nxSisa = Math.floor(sisaX / (l + jarak));
+            let nySisa = Math.floor(H / (p + jarak));
+            for(let y=0; y<nySisa; y++) {
+                for(let x=0; x<nxSisa; x++) {
+                    items.push({x: (nx*(p+jarak)) + (x*(l+jarak)), y: y*(p+jarak), w: l, h: p});
+                }
+            }
+        }
+        return items;
+    }
+
+    function hitung(isFromLog = false, logData = null) {
+        let d;
+        if(isFromLog) {
+            d = logData;
+            document.getElementById('nama').value = d.nama;
+            document.getElementById('bahan').value = d.bahan;
+            document.getElementById('LB').value = d.LB;
+            document.getElementById('TB').value = d.TB;
+            document.getElementById('lk').value = d.lk;
+            document.getElementById('tk').value = d.tk;
+            document.getElementById('jarak').value = d.jarak;
+            document.getElementById('hb').value = d.hb;
+            document.getElementById('hj').value = d.hj;
+        } else {
+            d = {
+                nama: document.getElementById('nama').value || "-",
+                bahan: document.getElementById('bahan').value || "-",
+                LB: parseFloat(document.getElementById('LB').value),
+                TB: parseFloat(document.getElementById('TB').value),
+                lk: parseFloat(document.getElementById('lk').value),
+                tk: parseFloat(document.getElementById('tk').value),
+                jarak: parseFloat(document.getElementById('jarak').value) || 0,
+                hb: parseFloat(document.getElementById('hb').value) || 0,
+                hj: parseFloat(document.getElementById('hj').value) || 0
+            };
+        }
+
+        if(!d.LB || !d.TB || !d.lk || !d.tk) return alert("Isi data dimensi!");
+
+        let l1 = getLayout(d.LB, d.TB, d.lk, d.tk, d.jarak);
+        let l2 = getLayout(d.LB, d.TB, d.tk, d.lk, d.jarak);
+        let finalItems = l1.length >= l2.length ? l1 : l2;
+        let hasil = finalItems.length;
+        let totalJual = hasil * d.hj;
+        let profit = totalJual - d.hb;
+
+        // RINCIAN DENGAN HARGA MODAL TAMBAHAN
+        document.getElementById('rincian-isi').innerHTML = `
+            <div class="detail-row"><span>Nama Pesanan:</span> <span>${d.nama}</span></div>
+            <div class="detail-row"><span>Nama Bahan:</span> <span>${d.bahan}</span></div>
+            <div class="detail-row"><span>Ukuran Bahan:</span> <span>${d.LB}x${d.TB} cm</span></div>
+            <div class="detail-row"><span>Ukuran Potong:</span> <span>${d.lk}x${d.tk} cm</span></div>
+            <div class="detail-row"><span>Hasil Potong:</span> <span style="color:#960000;">${hasil} Pcs</span></div>
+            <hr style="border:0; border-top:1px solid #eee; margin:5px 0;">
+            <div class="detail-row"><span>Harga Modal/Lembar:</span> <span>Rp ${d.hb.toLocaleString()}</span></div>
+            <div class="detail-row"><span>Harga Jual Total:</span> <span>Rp ${totalJual.toLocaleString()}</span></div>
+            <div class="detail-row"><span>Harga Jual /Pcs:</span> <span>Rp ${d.hj.toLocaleString()}</span></div>
+            <div class="detail-row"><span>Estimasi Profit:</span> <span style="color:#0000FF; font-weight:bold;">Rp ${profit.toLocaleString()}</span></div>
+        `;
+
+        const visualSheet = document.getElementById('visual-sheet');
+        visualSheet.innerHTML = "";
+        const scale = Math.min(450 / d.LB, 250 / d.TB);
+        visualSheet.style.width = (d.LB * scale) + "px";
+        visualSheet.style.height = (d.TB * scale) + "px";
+
+        finalItems.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'part';
+            div.style.left = (item.x * scale) + "px"; div.style.top = (item.y * scale) + "px";
+            div.style.width = (item.w * scale) + "px"; div.style.height = (item.h * scale) + "px";
+            visualSheet.appendChild(div);
+        });
+
+        document.getElementById('capture-area').style.display = 'block';
+        document.getElementById('export-buttons').style.display = 'flex';
+        if(!isFromLog) saveToLog(d, hasil, profit);
+    }
+
+    function saveToLog(fullData, hasil, untung) {
+        let logs = JSON.parse(localStorage.getItem('aiti_v7_logs')) || [];
+        const entry = { ...fullData, hasil, untung, waktu: new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) };
+        logs.unshift(entry);
+        if(logs.length > 50) logs.pop();
+        localStorage.setItem('aiti_v7_logs', JSON.stringify(logs));
+        renderLog();
+    }
+
+    function renderLog() {
+        const list = document.getElementById('log-list');
+        let logs = JSON.parse(localStorage.getItem('aiti_v7_logs')) || [];
+        list.innerHTML = logs.map((l, index) => `
+            <div class="log-item">
+                <div><b>${l.nama}</b><br><small>${l.waktu} | Untung: Rp ${l.untung.toLocaleString()}</small></div>
+                <button class="btn-prev" onclick='previewLog(${index})'>PREVIEW</button>
+            </div>
+        `).join('');
+    }
+
+    function previewLog(index) {
+        let logs = JSON.parse(localStorage.getItem('aiti_v7_logs')) || [];
+        hitung(true, logs[index]);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function clearLog() { if(confirm("Hapus semua riwayat?")) { localStorage.removeItem('aiti_v7_logs'); renderLog(); } }
+    function saveImage() { html2canvas(document.querySelector("#capture-area")).then(canvas => {
+        let link = document.createElement('a'); link.download = `Rincian-Aiti.png`; link.href = canvas.toDataURL(); link.click();
+    }); }
+    function savePDF() { const { jsPDF } = window.jspdf; html2canvas(document.querySelector("#capture-area")).then(canvas => {
+        const doc = new jsPDF(); doc.addImage(canvas.toDataURL('image/png'), 'PNG', 10, 10, 190, 0); doc.save("Rincian-Aiti.pdf");
+    }); }
+    window.onload = renderLog;
+</script>
+</body>
+</html>
+
