@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="asset/favicon.png">
+ 	<meta property="og:title" content="The Wedding of Alfa & Ginanjar">
+	<meta property="og:description" content="Rabu, 01 April 2026">
+	<meta property="og:image" content="https://aitistudio.github.io/alfa-ginanjar/asset/tumb.jpg">
+	<meta property="og:url" content="https://aitistudio.github.io/alfa-ginanjar/">
+	<meta property="og:type" content="website">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="icon" type="image/png" href="asset/favicon.png">
     <title>The Wedding Of Alfa & Ginanjar</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -876,38 +882,35 @@ function salinNorek(nomor) {
     alert("Nomor rekening berhasil disalin: " + nomor);
 }
 
+// Tambahkan variabel memori ini di luar fungsi scroll
+let navSudahMuncul = false;
+
 window.addEventListener('scroll', function() {
     const nav = document.getElementById('nav-bawah');
     const sectionAyat = document.getElementById('ayat');
     const penutup = document.getElementById('penutup');
     
-    // --- A. KONTROL NAVIGASI BAWAH ---
-    if (sectionAyat) {
-        // triggerPoint = Titik paling BAWAH section Ayat (Atas + Tinggi)
+    // --- A. KONTROL NAVIGASI BAWAH (Dengan Ingatan) ---
+    if (sectionAyat && nav) {
+        // Titik trigger: Bagian bawah section Ayat
         const triggerPoint = sectionAyat.offsetTop + sectionAyat.offsetHeight;
 
-        // Muncul saat tamu tinggal 50px lagi mau keluar dari section Ayat
+        // 1. Jika tamu sudah sampai/melewati Ayat, KUNCI statusnya jadi true
         if (window.scrollY > (triggerPoint - 50)) {
-            nav.classList.remove('translate-y-32', 'opacity-0');
-            nav.classList.add('translate-y-0', 'opacity-100');
-        } else {
-            nav.classList.add('translate-y-32', 'opacity-0');
-            nav.classList.remove('translate-y-0', 'opacity-100');
+            navSudahMuncul = true;
         }
-    }
 
     // --- B. KONTROL AUDIO FADE OUT (DI SECTION AKHIR) ---
-    if (penutup && bgm) {
-        const rect = penutup.getBoundingClientRect();
+    if (penutup && typeof bgm !== 'undefined' && bgm !== null) {
+        const rectPenutup = penutup.getBoundingClientRect();
         const windowHeight = window.innerHeight;
 
-        // Jika bagian penutup mulai terlihat di layar
-        if (rect.top < windowHeight) {
-            const fadeRatio = Math.max(0, (windowHeight - rect.top) / windowHeight);
+        if (rectPenutup.top < windowHeight) {
+            const fadeRatio = Math.max(0, (windowHeight - rectPenutup.top) / windowHeight);
             const newVolume = Math.max(0, 1 - fadeRatio);
-            bgm.volume = newVolume;
+            bgm.volume = Math.min(Math.max(newVolume, 0), 1);
         } else {
-            bgm.volume = 1;
+            bgm.volume = 1; 
         }
     }
 });
@@ -971,5 +974,6 @@ Lihat Ukuran Asli
 </body>
 
 </html>
+
 
 
