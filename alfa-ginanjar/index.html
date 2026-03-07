@@ -708,6 +708,26 @@ document.addEventListener("visibilitychange", function() {
     }
 });
 
+		// --- B. KONTROL AUDIO FADE OUT (DI SECTION AKHIR) ---
+    if (penutup && bgm) {
+        const rect = penutup.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        // Jika bagian penutup mulai terlihat di layar
+        if (rect.top < windowHeight) {
+            // Hitung rasio (0 = belum terlihat, 1 = sudah terlihat penuh)
+            const fadeRatio = Math.max(0, (windowHeight - rect.top) / windowHeight);
+            
+            // Kecilkan volume (1 sampai 0)
+            const newVolume = Math.max(0, 1 - fadeRatio);
+            bgm.volume = newVolume;
+        } else {
+            // Jika belum sampai bawah, volume tetap normal (100%)
+            bgm.volume = 1;
+        }
+    }
+});
+		
         // --- 6. Logika Hitung Mundur (Countdown) ---
         const hariH = new Date("April 01, 2026 08:00:00").getTime();
         
@@ -950,3 +970,4 @@ Lihat Ukuran Asli
 </body>
 
 </html>
+
