@@ -899,7 +899,16 @@ window.addEventListener('scroll', function() {
         if (window.scrollY > (triggerPoint - 50)) {
             navSudahMuncul = true;
         }
-		}
+
+        // 2. BAGIAN INI TADI TERLEWAT: Logika Tampil/Sembunyi
+        if (navSudahMuncul && window.scrollY > 200) {
+            nav.classList.remove('translate-y-32', 'opacity-0');
+            nav.classList.add('translate-y-0', 'opacity-100');
+        } else {
+            nav.classList.add('translate-y-32', 'opacity-0');
+            nav.classList.remove('translate-y-0', 'opacity-100');
+        }
+    } // <--- KURUNG TUTUP INI TADI JUGA HILANG
 
     // --- B. KONTROL AUDIO FADE OUT (DI SECTION AKHIR) ---
     if (penutup && typeof bgm !== 'undefined' && bgm !== null) {
@@ -915,7 +924,6 @@ window.addEventListener('scroll', function() {
         }
     }
 });
-	
 	</script>
 
 <div id="lightbox" class="fixed inset-0 z-[999] bg-black/95 hidden flex flex-col items-center justify-center p-4">
@@ -975,6 +983,7 @@ Lihat Ukuran Asli
 </body>
 
 </html>
+
 
 
 
