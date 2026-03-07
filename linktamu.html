@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembuat Link Nama Tamu - Aiti Design</title>
+    <link rel="icon" type="image/png" href="https://aitistudio.github.io/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+        body { font-family: 'Montserrat', sans-serif; }
+        
+        /* Styling Tab Button */
+        .tab-btn.active { background-color: #4f46e5; color: white; border-color: #4f46e5; }
+        .tab-btn { background-color: #fef08a; color: #854d0e; border-color: #ca8a04; }
+        
+        /* Dark Mode Tab Button Override */
+        .dark .tab-btn { background-color: #44403c; color: #d6d3d1; border-color: #57534e; }
+        .dark .tab-btn.active { background-color: #4f46e5; color: white; border-color: #4f46e5; }
+    </style>
+
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="bg-[#f4f4f5] dark:bg-stone-900 text-stone-800 dark:text-stone-200 pb-20 transition-colors duration-300">
+
+    <header class="bg-white dark:bg-stone-800 shadow-sm border-b border-stone-200 dark:border-stone-700 py-6 mb-8 transition-colors duration-300">
+    <div class="max-w-4xl mx-auto px-4 flex justify-between items-center">
+        <div class="flex-1"></div> 
+        
+        <div class="text-center flex-none">
+            <h1 class="text-xl md:text-2xl font-bold tracking-widest text-stone-800 dark:text-stone-100 mb-1 whitespace-nowrap">PEMBUAT LINK TAMU</h1>
+                <a href="https://api.whatsapp.com/send?phone=6285162634997&text=Bagaimana%20cara%20menggunakan%20link%20generatornya%3F" 
+           target="_blank"
+		class="flex items-center justify-center gap-2 text-xs text-stone-500 dark:text-stone-400">
+                    <i class="fa-solid fa-share-nodes"></i> BISA TANYA ADMIN AITI DESIGN
+                </a>
+            </div>
+            <div class="flex-1 flex justify-end">
+                <button id="theme-toggle" class="text-stone-500 dark:text-stone-400 hover:bg-stone-100 dark:hover:bg-stone-700 p-3 rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <i id="theme-toggle-dark-icon" class="fa-solid fa-moon hidden text-lg"></i>
+                    <i id="theme-toggle-light-icon" class="fa-solid fa-sun hidden text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 space-y-6">
+        
+        <div class="bg-white dark:bg-stone-800 p-6 rounded-2xl shadow-sm border border-stone-200 dark:border-stone-700 transition-colors duration-300">
+            <h2 class="text-sm font-bold uppercase tracking-widest mb-1 dark:text-stone-100">LINK UNDANGAN KAMU</h2>
+            <p id="display-url" class="text-blue-600 dark:text-blue-400 font-medium break-all">https://aitistudio.github.io/nama-pengantin</p>
+            <p class="text-xs text-stone-400 dark:text-stone-500 mt-2"><i class="fa-solid fa-circle-info mr-1"></i>URL ini otomatis menyesuaikan dari link generator kamu</p>
+        </div>
+
+        <div class="bg-white dark:bg-stone-800 p-6 md:p-8 rounded-2xl shadow-sm border border-stone-200 dark:border-stone-700 space-y-6 transition-colors duration-300">
+            
+            <div>
+                <label class="block text-sm font-bold mb-2 dark:text-stone-200">Yang Mengundang</label>
+                <input type="text" id="hostName" placeholder="Nama Pengundang (Contoh: Bagas & Tiya / Kel. Bapak Kenji)" class="w-full p-3 bg-white dark:bg-stone-900 border border-stone-300 dark:border-stone-600 dark:text-stone-100 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-colors duration-300">
+            </div>
+
+            <div>
+                <label class="block text-sm font-bold mb-1 dark:text-stone-200">List Nama Tamu Undangan</label>
+                <p class="text-xs text-stone-500 dark:text-stone-400 mb-2">* Gunakan <strong>baris baru (Enter)</strong> untuk memisahkan nama yang akan diundang.</p>
+                <textarea id="guestList" rows="6" placeholder="Kenji Sesaguna&#10;Keluarga Ibu Sulistiyah&#10;Ainul & Istri" class="w-full p-3 bg-white dark:bg-stone-900 border border-stone-300 dark:border-stone-600 dark:text-stone-100 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-colors duration-300"></textarea>
+                <button class="mt-2 text-sm text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 opacity-50 cursor-not-allowed transition-colors" disabled>
+                    <i class="fa-solid fa-cloud-arrow-up mr-1"></i> Import dari File Excel (Segera Hadir)
+                </button>
+            </div>
+
+            <div>
+                <label class="block text-sm font-bold mb-3 dark:text-stone-200">Pilihan Teks Pengantar</label>
+                <div class="flex flex-wrap gap-2 mb-4" id="tab-container">
+                    <button onclick="setTemplate('formal', this)" class="tab-btn active px-4 py-2 border rounded-lg text-sm font-bold transition-all">Formal</button>
+                    <button onclick="setTemplate('muslim', this)" class="tab-btn px-4 py-2 border rounded-lg text-sm font-bold transition-all">Muslim</button>
+                    <button onclick="setTemplate('nasrani', this)" class="tab-btn px-4 py-2 border rounded-lg text-sm font-bold transition-all">Nasrani</button>
+                    <button onclick="setTemplate('hindu', this)" class="tab-btn px-4 py-2 border rounded-lg text-sm font-bold transition-all">Hindu</button>
+                    <button onclick="setTemplate('english', this)" class="tab-btn px-4 py-2 border rounded-lg text-sm font-bold transition-all">English</button>
+                    <button onclick="setTemplate('khitan', this)" class="tab-btn px-4 py-2 border rounded-lg text-sm font-bold transition-all">Khitan</button>
+                </div>
+
+                <label class="block text-sm font-bold mb-2 dark:text-stone-200">Isi Kata Pengantar</label>
+                <textarea id="msgTemplate" rows="10" class="w-full p-4 bg-stone-50 dark:bg-stone-900 border border-stone-300 dark:border-stone-600 dark:text-stone-100 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm leading-relaxed transition-colors duration-300"></textarea>
+                <p class="text-xs text-red-500 dark:text-red-400 mt-2 italic font-medium">Ket : Jangan menghapus [nama] [link-undangan] [mempelai]</p>
+            </div>
+
+            <button onclick="generateList()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl transition-all shadow-md">
+                <i class="fa-solid fa-users mr-2"></i> Buat Daftar Link Nama Tamu
+            </button>
+        </div>
+
+        <div id="result-section" class="hidden space-y-4">
+            <div class="bg-white dark:bg-stone-800 rounded-2xl shadow-sm border border-stone-200 dark:border-stone-700 overflow-hidden transition-colors duration-300">
+                <div class="bg-stone-100 dark:bg-stone-900 px-6 py-4 border-b dark:border-stone-700 flex justify-between items-center font-bold text-sm dark:text-stone-200 transition-colors duration-300">
+                    <span>Nama Tamu</span>
+                    <span>Pilihan</span>
+                </div>
+                <div id="output-list" class="divide-y divide-stone-100 dark:divide-stone-700">
+                    </div>
+            </div>
+
+            <div class="text-center pt-4">
+                <button onclick="clearHistory()" class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg text-sm transition-all shadow-md">
+                    <i class="fa-solid fa-trash-can mr-2"></i> Hapus Semua Data Tamu
+                </button>
+            </div>
+        </div>
+
+        <div class="text-center pt-8">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="w-12 h-12 bg-white dark:bg-stone-800 border-2 border-stone-800 dark:border-stone-400 rounded-full flex items-center justify-center mx-auto hover:bg-stone-100 dark:hover:bg-stone-700 transition-all shadow-sm">
+    <i class="fa-solid fa-chevron-up text-stone-800 dark:text-stone-400"></i>
+</button>
+            <div class="flex items-center justify-center gap-4 mt-6">
+                <div class="h-px bg-stone-300 dark:bg-stone-600 flex-1"></div>
+                <i class="fa-solid fa-heart text-stone-800 dark:text-stone-400"></i>
+                <div class="h-px bg-stone-300 dark:bg-stone-600 flex-1"></div>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-stone-800 p-6 rounded-2xl shadow-sm border border-stone-200 dark:border-stone-700 mt-8 text-sm text-stone-600 dark:text-stone-400 transition-colors duration-300">
+            <p class="font-bold text-stone-800 dark:text-stone-200 mb-4">Petunjuk:</p>
+            <ul class="space-y-4">
+                <li class="flex items-start gap-3"><i class="fa-solid fa-circle-chevron-right text-blue-600 dark:text-blue-400 mt-1"></i> Masukkan nama yang mengundang, misalnya Romeo & Juliet</li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-circle-chevron-right text-blue-600 dark:text-blue-400 mt-1"></i> Pilih Acara yang akan di hadiri oleh tamu, bila anda menggunakan pilihan acara</li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-circle-chevron-right text-blue-600 dark:text-blue-400 mt-1"></i> Masukkan nama-nama tamu pada list nama tamu undangan (perbaris per nama).</li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-circle-chevron-right text-blue-600 dark:text-blue-400 mt-1"></i> Anda juga bisa memasukkan nama tamu dari phonebook ponsel atau dari file excel dengan cara download dulu template excelnya.</li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-circle-chevron-right text-blue-600 dark:text-blue-400 mt-1"></i> Pilih TEKS PENGANTAR sesuai dengan tamu yang akan anda undang.</li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-circle-chevron-right text-blue-600 dark:text-blue-400 mt-1"></i> Klik Buat daftar nama tamu untuk mendapatkan link undangan.</li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-circle-chevron-right text-blue-600 dark:text-blue-400 mt-1"></i> Pada list tamu yang berhasil dibuat, Klik tombol WA / Share / Copy Teks / Copy Link untuk menyebarkannya.</li>
+                <li class="flex items-start gap-3"><i class="fa-solid fa-circle-chevron-right text-blue-600 dark:text-blue-400 mt-1"></i> Sebaiknya test dulu kirim ke nomor sendiri untuk memastikan bahwa isi undangan sudah benar.</li>
+            </ul>
+        </div>
+    </main>
+
+    <script>
+        // --- 0. LOGIKA DARK MODE ---
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleBtn = document.getElementById('theme-toggle');
+
+        // Ubah ikon berdasarkan tema saat ini
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            // Toggle ikon
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            // Set ke localStorage dan ubah class HTML
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+
+        // --- 1. SETTING URL DINAMIS ---
+        const urlParams = new URLSearchParams(window.location.search);
+        let idUndangan = urlParams.get('id') || 'nama-pengantin'; 
+        let baseUrl = `https://aitistudio.github.io/${idUndangan}/`;
+        document.getElementById('display-url').innerText = baseUrl;
+
+        // --- 2. DATABASE TEMPLATE ---
+        const templates = {
+            formal: `Kepada Yth.\nBapak/Ibu/Saudara/i\n*[nama]*\n--------------------------\n\nTanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i [nama], untuk menghadiri acara pernikahan kami.\n\n*Berikut link undangan kami*, untuk info lengkap dari acara, bisa kunjungi :\n\n[link-undangan]\n\nMerupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.\n\nTerima Kasih\n\nHormat kami,\n[mempelai]\n--------------------------`,
+            muslim: `Kepada Yth.\nBapak/Ibu/Saudara/i\n*[nama]*\n--------------------------\n\n*Assalamualaikum Warahmatullahi Wabarakatuh*\n\nTanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i [nama], untuk menghadiri acara pernikahan kami.\n\n*Berikut link undangan kami*, untuk info lengkap dari acara, bisa kunjungi :\n\n[link-undangan]\n\nMerupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.\n\n*Wassalamualaikum Warahmatullahi Wabarakatuh*\n\nTerima Kasih\n\nHormat kami,\n[mempelai]\n--------------------------`,
+            nasrani: `Kepada Yth.\nBapak/Ibu/Saudara/i\n*[nama]*\n--------------------------\n\nSalam Sejahtera Bagi Kita Semua. Tuhan membuat segala sesuatu indah pada waktunya dan mempersatukan kami dalam suatu ikatan pernikahan kudus, semoga Tuhan memberkati dalam mengiringi pernikahan kami.\n\nTanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i [nama], untuk menghadiri acara pernikahan kami.\n\n*Berikut link undangan kami*, untuk info lengkap dari acara, bisa kunjungi :\n\n[link-undangan]\n\nMerupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.\n\nTerima Kasih\n\nHormat kami,\n[mempelai]\n--------------------------`,
+            hindu: `Kepada Yth.\nBapak/Ibu/Saudara/i\n*[nama]*\n--------------------------\n\n*Om Swastiastu*\n\nTanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i [nama], untuk menghadiri acara pernikahan kami.\n\n*Berikut link undangan kami*, untuk info lengkap dari acara, bisa kunjungi :\n\n[link-undangan]\n\nMerupakan suatu kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan untuk hadir dan memberikan doa restu.\n\n*Om Shanti, Shanti, Shanti, Om*\n\nTerima Kasih\n\nHormat kami,\n[mempelai]\n--------------------------`,
+            english: `Dear.\nMr/Ms/Brother/Sister\n*[nama]*\n--------------------------\n\nWithout reducing our respect, please allow us to invite you, to attend our wedding.\n\n*Following is our invitation link*, for complete information on the event, please visit:\n\n[link-undangan]\n\nIt is a pleasure for us if you are willing to attend and give your blessing.\n\nThank You\n\nBest regards,\n[mempelai]\n--------------------------`,
+            khitan: `Kepada Yth.\nBapak/Ibu/Saudara/i\n*[nama]*\n--------------------------\n\nAssalamu'alaikum Wr. Wb.\n\nDengan memohon rahmat dan ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i [nama], untuk menghadiri acara Walimatul Khitan Putra Kami.\n\nBerikut link undangan nya untuk info lengkap dari acara bisa kunjungi :\n\n[link-undangan]\n\nMerupakan suatu kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir di acara syukuran khitan putra kami.\n\nUndangan ini merupakan undangan resmi. Mohon maaf apabila undangan tidak diantarkan langsung dikarenakan keterbatasan jarak dan waktu. Terimakasih atas perhatiannya\n\nWassalamu'alaikum Wr. Wb.\n\nTerima Kasih\n\nHormat kami,\n[mempelai]\n--------------------------`
+        };
+
+        document.getElementById('msgTemplate').value = templates['formal'];
+
+        // --- 3. FUNGSI GANTI TEMPLATE ---
+        function setTemplate(tipe, btnElement) {
+            document.getElementById('msgTemplate').value = templates[tipe];
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active', 'bg-blue-600', 'text-white', 'border-blue-600'));
+            btnElement.classList.add('active');
+        }
+
+        // --- 4. FUNGSI GENERATE LIST TAMU ---
+        let guestData = [];
+
+        function generateList() {
+            const hostName = document.getElementById('hostName').value.trim() || "Kami yang berbahagia";
+            const rawGuests = document.getElementById('guestList').value.split('\n');
+            const template = document.getElementById('msgTemplate').value;
+            
+            if (!rawGuests[0]) return alert("Masukkan minimal 1 nama tamu terlebih dahulu!");
+
+            document.getElementById('result-section').classList.remove('hidden');
+            const output = document.getElementById('output-list');
+            output.innerHTML = '';
+            guestData = [];
+
+            rawGuests.forEach((guest, index) => {
+                const name = guest.trim();
+                if (name !== "") {
+                    const encodedName = encodeURIComponent(name);
+                    const finalLink = `${baseUrl}?to=${encodedName}`;
+                    
+                    let finalMessage = template
+                        .replace(/\[nama\]/g, name)
+                        .replace(/\[link-undangan\]/g, finalLink)
+                        .replace(/\[mempelai\]/g, hostName);
+
+                    guestData.push({ id: index, name: name, link: finalLink, message: finalMessage });
+
+                    const row = document.createElement('div');
+                    // Tambahkan kelas dark mode pada baris hasil generate
+                    row.className = "px-6 py-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:bg-stone-50 dark:hover:bg-stone-700 transition-colors";
+                    row.id = `guest-row-${index}`;
+                    row.innerHTML = `
+                        <div class="font-medium text-sm dark:text-stone-200">
+                            <span class="text-stone-400 dark:text-stone-500 mr-2">${index + 1}.</span> ${name}
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="sendWA(${index})" class="w-10 h-10 bg-green-500 hover:bg-green-600 text-white rounded-lg flex items-center justify-center transition-all" title="Kirim ke WA"><i class="fa-brands fa-whatsapp text-lg"></i></button>
+                            <button onclick="shareLink(${index})" class="w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center transition-all" title="Bagikan"><i class="fa-solid fa-share-nodes"></i></button>
+                            <button onclick="copyText(${index})" class="w-10 h-10 bg-stone-500 hover:bg-stone-600 text-white rounded-lg flex items-center justify-center transition-all" title="Salin Teks"><i class="fa-regular fa-copy"></i></button>
+                            <button onclick="copyLinkOnly(${index})" class="w-10 h-10 bg-stone-500 hover:bg-stone-600 text-white rounded-lg flex items-center justify-center transition-all" title="Salin Link"><i class="fa-solid fa-link"></i></button>
+                            <button onclick="deleteGuest(${index})" class="w-10 h-10 bg-red-500 hover:bg-red-600 text-white rounded-lg flex items-center justify-center transition-all" title="Hapus"><i class="fa-solid fa-trash-can"></i></button>
+                        </div>
+                    `;
+                    output.appendChild(row);
+                }
+            });
+        }
+
+        // --- 5. FUNGSI TOMBOL AKSI ---
+        function sendWA(index) {
+            const msg = encodeURIComponent(guestData[index].message);
+            window.open(`https://api.whatsapp.com/send?text=${msg}`, '_blank');
+        }
+
+        function shareLink(index) {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Undangan Pernikahan',
+                    text: guestData[index].message,
+                }).catch(console.error);
+            } else {
+                alert("Browser Anda tidak mendukung fitur Share langsung. Gunakan tombol Salin Teks.");
+            }
+        }
+
+        function copyText(index) {
+            navigator.clipboard.writeText(guestData[index].message);
+            alert(`Pesan undangan untuk ${guestData[index].name} berhasil disalin!`);
+        }
+
+        function copyLinkOnly(index) {
+            navigator.clipboard.writeText(guestData[index].link);
+            alert(`Link undangan untuk ${guestData[index].name} berhasil disalin!`);
+        }
+
+        function deleteGuest(index) {
+            const row = document.getElementById(`guest-row-${index}`);
+            if (row) row.remove();
+        }
+
+        function clearHistory() {
+            if (confirm("Yakin ingin menghapus semua data tamu?")) {
+                document.getElementById('output-list').innerHTML = '';
+                document.getElementById('result-section').classList.add('hidden');
+                document.getElementById('guestList').value = '';
+                guestData = [];
+            }
+        }
+    </script>
+
+<footer class="bg-white dark:bg-stone-900 dark:text-stone-100 text-stone-800 mt-8 text-center transition-colors duration-300">
+<div class="container mx-auto">
+<h1 class="font-medium text-sm">
+            Di Desain oleh © <span class="font-bold dark:text-blue-600 text-red-400">Aiti Design</span> - 2026, <br>All Rights Reserved.</br>
+        </h1>
+    </div>
+</footer>
+
+
+</body>
+</html>
