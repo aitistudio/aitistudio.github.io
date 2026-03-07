@@ -286,7 +286,7 @@ Dengan segala kerendahan hati kami berharap kehadiran kehadiran Bapak/Ibu/saudar
 <br>07.30 WIB - Selesai</br></p>
 <p class="font-bold text-stone-800">Kediaman Mempelai Wanita</p>
 <p class="font-semibold text-stone-800">Jl. Ronggo Lawe RT. 04/RW.06 Ds. Sumengko Kec. Jatirejo Kab. Mojokerto</p>
-<a href="https://maps.app.goo.gl/N28oM8ENrRPi5JeN7" class="mt-6 inline-block bg-[#8c7a6b] text-white px-6 py-2 rounded-full text-xs font-sans-clean font-bold tracking-widest z-50 animate-pulse-medium">GOOGLE MAPS</a>
+<a href="https://maps.app.goo.gl/RmYCCppu9PhhbMAR6" class="mt-6 inline-block bg-[#8c7a6b] text-white px-6 py-2 rounded-full text-xs font-sans-clean font-bold tracking-widest z-50 animate-pulse-medium">GOOGLE MAPS</a>
 </div>
 
 <div class="bg-[#FCF5EF] p-8 rounded-3xl shadow-lg border-t-4 border-stone-800 reveal delay-1">
@@ -296,7 +296,7 @@ Dengan segala kerendahan hati kami berharap kehadiran kehadiran Bapak/Ibu/saudar
 <br>Rilex / Bebas</br></p>
 <p class="font-bold text-stone-800">Kediaman Mempelai Wanita</p>
 <p class="font-medium text-stone-800">Jl. Ronggo Lawe RT. 04/RW.06 Ds. Sumengko Kec. Jatirejo Kab. Mojokerto</p>
-<a href="https://maps.app.goo.gl/N28oM8ENrRPi5JeN7" class="mt-6 inline-block bg-[#8c7a6b] text-white px-6 py-2 rounded-full text-xs font-sans-clean font-bold tracking-widest z-50 animate-pulse-medium">GOOGLE MAPS</a>
+<a href="https://maps.app.goo.gl/RmYCCppu9PhhbMAR6" class="mt-6 inline-block bg-[#8c7a6b] text-white px-6 py-2 rounded-full text-xs font-sans-clean font-bold tracking-widest z-50 animate-pulse-medium">GOOGLE MAPS</a>
 </div>
 </div>
 </div>
@@ -678,27 +678,35 @@ Browser Anda tidak mendukung video.
         }
 
         // --- 4. Logika Tombol Play/Pause Musik ---
-        function toggleMusik() {
-            if (bgm.paused) {
-                bgm.play();
-                ikonMusik.classList.remove('pause-spin');
-            } else {
-                bgm.pause();
-                ikonMusik.classList.add('pause-spin');
-            }
-        }
+// Tambahkan variabel pembantu di luar fungsi
+let statusMusikManual = true; 
 
-        // --- 5. Sensor Tab Fokus (Pause saat tab ganti) ---
-        document.addEventListener("visibilitychange", function() {
-            if (document.hidden) {
-                bgm.pause();
-                ikonMusik.classList.add('pause-spin');
-            } else if (isCinematicMode && !bgm.paused) {
-                // Hanya resume jika sebelumnya sedang play
-                bgm.play();
-                ikonMusik.classList.remove('pause-spin');
-            }
-        });
+function toggleMusik() {
+    if (bgm.paused) {
+        bgm.play();
+        statusMusikManual = true; // User ingin musik nyala
+        ikonMusik.classList.remove('pause-spin');
+    } else {
+        bgm.pause();
+        statusMusikManual = false; // User sengaja mematikan musik
+        ikonMusik.classList.add('pause-spin');
+    }
+}
+
+// --- 5. Sensor Tab Fokus (Resume otomatis yang lebih pintar) ---
+document.addEventListener("visibilitychange", function() {
+    if (document.hidden) {
+        bgm.pause();
+        // Jangan ubah statusMusikManual di sini agar sistem ingat kondisi terakhir
+    } else {
+        // Cek apakah undangan sudah dibuka (isCinematicMode) 
+        // DAN user tidak sedang mematikan musik secara manual
+        if (isCinematicMode && statusMusikManual) {
+            bgm.play();
+            ikonMusik.classList.remove('pause-spin');
+        }
+    }
+});
 
         // --- 6. Logika Hitung Mundur (Countdown) ---
         const hariH = new Date("April 01, 2026 08:00:00").getTime();
@@ -940,4 +948,5 @@ Lihat Ukuran Asli
 </nav>
 
 </body>
+
 </html>
