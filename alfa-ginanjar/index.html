@@ -707,27 +707,7 @@ document.addEventListener("visibilitychange", function() {
         }
     }
 });
-
-		// --- B. KONTROL AUDIO FADE OUT (DI SECTION AKHIR) ---
-    if (penutup && bgm) {
-        const rect = penutup.getBoundingClientRect();
-        const windowHeight = window.innerHeight;
-
-        // Jika bagian penutup mulai terlihat di layar
-        if (rect.top < windowHeight) {
-            // Hitung rasio (0 = belum terlihat, 1 = sudah terlihat penuh)
-            const fadeRatio = Math.max(0, (windowHeight - rect.top) / windowHeight);
-            
-            // Kecilkan volume (1 sampai 0)
-            const newVolume = Math.max(0, 1 - fadeRatio);
-            bgm.volume = newVolume;
-        } else {
-            // Jika belum sampai bawah, volume tetap normal (100%)
-            bgm.volume = 1;
-        }
-    }
-});
-		
+	
         // --- 6. Logika Hitung Mundur (Countdown) ---
         const hariH = new Date("April 01, 2026 08:00:00").getTime();
         
@@ -899,19 +879,40 @@ function salinNorek(nomor) {
 window.addEventListener('scroll', function() {
     const nav = document.getElementById('nav-bawah');
     const sectionAyat = document.getElementById('ayat');
+    const penutup = document.getElementById('penutup');
     
+    // --- A. KONTROL NAVIGASI BAWAH ---
     if (sectionAyat) {
         // triggerPoint = Titik paling BAWAH section Ayat (Atas + Tinggi)
-const triggerPoint = sectionAyat.offsetTop + sectionAyat.offsetHeight;
+        const triggerPoint = sectionAyat.offsetTop + sectionAyat.offsetHeight;
 
-// Muncul saat tamu tinggal 50px lagi mau keluar dari section Ayat
-if (window.scrollY > (triggerPoint - 50)) {
+        // Muncul saat tamu tinggal 50px lagi mau keluar dari section Ayat
+        if (window.scrollY > (triggerPoint - 50)) {
             nav.classList.remove('translate-y-32', 'opacity-0');
             nav.classList.add('translate-y-0', 'opacity-100');
-        } 
+        } else {
+            nav.classList.add('translate-y-32', 'opacity-0');
+            nav.classList.remove('translate-y-0', 'opacity-100');
+        }
+    }
+
+    // --- B. KONTROL AUDIO FADE OUT (DI SECTION AKHIR) ---
+    if (penutup && bgm) {
+        const rect = penutup.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+
+        // Jika bagian penutup mulai terlihat di layar
+        if (rect.top < windowHeight) {
+            const fadeRatio = Math.max(0, (windowHeight - rect.top) / windowHeight);
+            const newVolume = Math.max(0, 1 - fadeRatio);
+            bgm.volume = newVolume;
+        } else {
+            bgm.volume = 1;
+        }
     }
 });
-</script>
+	
+	</script>
 
 <div id="lightbox" class="fixed inset-0 z-[999] bg-black/95 hidden flex flex-col items-center justify-center p-4">
 <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-4xl">&times;</button>
@@ -970,4 +971,5 @@ Lihat Ukuran Asli
 </body>
 
 </html>
+
 
