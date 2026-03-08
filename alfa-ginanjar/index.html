@@ -919,8 +919,8 @@ window.addEventListener('scroll', function() {
 
         if (rectPenutup.top < windowHeight) {
             const fadeRatio = Math.max(0, (windowHeight - rectPenutup.top) / windowHeight);
-            const newVolume = Math.max(0, 1 - fadeRatio);
-            bgm.volume = Math.min(Math.max(newVolume, 0), 1);
+            const newVolume = Math.max(0.2, 1 - fadeRatio);
+            bgm.volume = Math.min(Math.max(newVolume, 0.2), 1);
         } else {
             bgm.volume = 1; 
         }
@@ -985,6 +985,7 @@ Lihat Ukuran Asli
 </body>
 
 </html>
+
 
 
 
