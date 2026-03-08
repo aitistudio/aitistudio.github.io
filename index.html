@@ -7,112 +7,108 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="shortcut icon" href="favicon.png" type="image/png">
 
-    <title>Aiti Studio | Desain Grafis & Undangan Digital</title>
+    <title>Aiti Design | Desain Grafis & Undangan Digital Premium</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com" rel="stylesheet">
-    <script src="https://unpkg.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=Playfair+Display:ital,wght@0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .font-serif { font-family: 'Playfair Display', serif; }
-        /* Efek Glassmorphism */
         .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
-        .dark .glass { background: rgba(15, 23, 42, 0.8); border-color: #1e293b; }
     </style>
 </head>
-<!-- Tambahkan transition-colors agar perubahan mode terasa smooth -->
 <body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-500 leading-relaxed">
 
-    <!-- NAVIGATION -->
-    <nav class="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-[#111827]/30 backdrop-blur-md">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-        <!-- Logo Section -->
-       <div class="flex items-center gap-2 mr-auto shrink-0">
-    <img src="logo.svg" alt="AitiStudio" class="h-8 w-auto dark:hidden">
-    <img src="logo-white.svg" alt="AitiStudio" class="h-8 w-auto hidden dark:block">
-</div>
-
-        <!-- Menu Navigation (Mobile & Desktop) -->
-        <div class="flex items-center gap-3 md:gap-8">
-            <!-- Teks Jasa & Porto tetap muncul di HP tapi ukurannya menyesuaikan -->
-            <a href="#jasa" class="text-[12px] md:text-sm font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 hover:text-rose-500 transition">Jasa</a>
-            <a href="https://aitistudio.github.io" class="text-[12px] md:text-sm font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 hover:text-rose-500 transition">Portofolio</a>
-            
-            <!-- Tombol WA yang mengecil otomatis di HP -->
-            <a href="https://api.whatsapp.com" 
-               target="_blank" rel="noopener noreferrer"
-               class="text-[12px] md:text-xs text-rose-600 border-2 border-rose-600 px-3 py-1 md:px-4 md:py-1.5 rounded-full font-bold hover:bg-rose-600 hover:text-white transition whitespace-nowrap">
-               WA Kami
-            </a>
+    <nav class="sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-[#111827]/30 backdrop-blur-md py-3" id="navbar">
+        <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 mr-auto shrink-0">
+                <span class="text-xl md:text-2xl font-bold text-slate-900 dark:text-white tracking-tighter">Aiti<span class="text-rose-600">Design.</span></span>
+            </div>
+            <div class="flex items-center gap-3 md:gap-8">
+                <a href="#jasa" class="text-[12px] md:text-sm font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 hover:text-rose-500 transition">Jasa</a>
+                <a href="https://aitistudio.github.io" class="text-[12px] md:text-sm font-bold uppercase tracking-wider text-slate-600 dark:text-slate-400 hover:text-rose-500 transition">Portofolio</a>
+                <a href="https://api.whatsapp.com/send?phone=6285162634997&text=Halo%20Aiti%20Design,%20saya%20ingin%20tanya%20layanan%20desainnya." 
+                   target="_blank" rel="noopener noreferrer"
+                   class="text-[12px] md:text-xs text-rose-600 border-2 border-rose-600 px-3 py-1 md:px-4 md:py-1.5 rounded-full font-bold hover:bg-rose-600 hover:text-white transition whitespace-nowrap">
+                   WA Kami
+                </a>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-
-    <!-- HERO SECTION -->
-    <header class="py-24 px-6 text-center max-w-4xl mx-auto">
+    <header class="py-20 px-6 text-center max-w-4xl mx-auto">
         <span class="bg-rose-100 text-rose-600 dark:bg-rose-900/30 dark:text-rose-400 px-4 py-1 rounded-full text-xs font-serif italic tracking-widest mb-6 inline-block">
             Wujudkan Ide Impianmu Menjadi Kenyataan
         </span>
         <h1 class="text-5xl md:text-7xl font-serif mb-6 leading-tight dark:text-white">
-    Ubah Momen Spesial Jadi 
-    <br> <!-- Ini adalah kode untuk Enter -->
-    <span class="italic text-rose-600 text-6xl md:text-8xl block md:inline mt-2 md:mt-0">
-        Karya Digital & Cetak
-    </span>
-</h1>
+            Ubah Momen Spesial Jadi 
+            <br>
+            <span class="italic text-rose-600 text-5xl md:text-8xl block mt-2">
+                Karya Digital & Cetak
+            </span>
+        </h1>
         <p class="text-lg text-slate-500 dark:text-slate-400 mb-10 max-w-2xl mx-auto">
             Jasa Desain Grafis, Cetak, dan Undangan Website Premium dengan harga terjangkau. Estetik, Cepat, dan Profesional.
         </p>
         <div class="flex flex-col md:flex-row justify-center gap-4">
-            <a href="#jasa" class="bg-rose-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg hover:shadow-rose-200 dark:hover:shadow-rose-900/40 transition">
+            <a href="#jasa" class="bg-rose-600 text-white px-8 py-4 rounded-2xl font-bold shadow-lg transition hover:bg-rose-700">
                 Lihat Katalog Jasa
             </a>
-            <a href="https://aitistudio.github.io" class="bg-white dark:bg-slate-800 dark:border-slate-700 border border-slate-200 px-8 py-4 rounded-2xl font-bold hover:bg-slate-50 dark:hover:bg-slate-700 transition">
-                Hasil Desain (Portofolio)
+            <a href="https://aitistudio.github.io" class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-8 py-4 rounded-2xl font-bold transition hover:bg-slate-50">
+                Portofolio
             </a>
         </div>
     </header>
 
-    <!-- JASA SECTION -->
     <section id="jasa" class="py-20 bg-white dark:bg-slate-900">
-        <div class="max-w-6xl mx-auto px-6 text-center">
+        <div class="max-w-7xl mx-auto px-6 text-center">
             <h2 class="text-3xl font-serif mb-12 dark:text-white">Layanan Kami</h2>
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 
-                <!-- Undangan Digital -->
-                <div class="p-8 rounded-3xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 hover:border-rose-300 transition group">
+                <div class="p-6 rounded-3xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 hover:border-rose-300 transition group flex flex-col h-full">
                     <div class="w-12 h-12 bg-rose-600 text-white rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition">
                         <i data-lucide="tablet"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-rose-600 uppercase">Undangan Digital</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 italic">Mulai Rp 99rb</p>
-                    <a href="https://aitistudio.github.io" class="text-sm font-bold text-slate-900 dark:text-slate-200 flex items-center justify-center gap-2">
-                        Cek Contoh <i data-lucide="arrow-right" class="w-4"></i>
+                    <h3 class="text-lg font-bold mb-3 text-rose-600 uppercase">Undangan Digital</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-grow">Undangan web interaktif yang modern dan mudah disebarkan.</p>
+                    <p class="text-sm text-slate-800 dark:text-slate-300 mb-6 font-bold bg-rose-100 dark:bg-rose-900/30 py-2 rounded-lg">Mulai Rp 99rb</p>
+                    <a href="https://aitistudio.github.io" target="_blank" class="text-sm font-bold flex items-center justify-center gap-2 hover:text-rose-600 transition">
+                        Cek Demo <i data-lucide="arrow-right" class="w-4"></i>
                     </a>
                 </div>
 
-                <!-- Desain Grafis -->
-                <div class="p-8 rounded-3xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 hover:border-blue-400 transition group">
+                <div class="p-6 rounded-3xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 hover:border-emerald-400 transition group flex flex-col h-full">
+                    <div class="w-12 h-12 bg-emerald-500 text-white rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition">
+                        <i data-lucide="file-text"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-3 text-emerald-600 uppercase">Undangan Cetak</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-grow">Kartu fisik premium dengan desain eksklusif dan bahan berkualitas.</p>
+                    <a href="https://api.whatsapp.com/send?phone=6285162634997&text=Halo,%20tanya%20undangan%20cetak." target="_blank" class="mt-auto text-sm font-bold flex items-center justify-center gap-2 hover:text-emerald-600 transition">
+                        Tanya Harga <i data-lucide="arrow-right" class="w-4"></i>
+                    </a>
+                </div>
+
+                <div class="p-6 rounded-3xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 hover:border-blue-400 transition group flex flex-col h-full">
                     <div class="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition">
                         <i data-lucide="palette"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-blue-600 dark:text-blue-400 uppercase">Desain Grafis</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Logo, Poster, Feed Instagram, hingga Spanduk.</p>
-                    <a href="https://aitistudio.github.io" class="text-sm font-bold text-slate-900 dark:text-slate-200 flex items-center justify-center gap-2">
-                        Lihat Hasil <i data-lucide="arrow-right" class="w-4"></i>
+                    <h3 class="text-lg font-bold mb-3 text-blue-600 uppercase">Desain Grafis</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-grow">Logo, Poster, Banner, hingga feed Instagram profesional.</p>
+                    <a href="https://api.whatsapp.com/send?phone=6285162634997&text=Halo,%20tanya%20jasa%20desain%20grafis." target="_blank" class="mt-auto text-sm font-bold flex items-center justify-center gap-2 hover:text-blue-600 transition">
+                        Konsultasi <i data-lucide="arrow-right" class="w-4"></i>
                     </a>
                 </div>
 
-                <!-- Cetak Kilat -->
-                <div class="p-8 rounded-3xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 hover:border-orange-400 transition group">
+                <div class="p-6 rounded-3xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 hover:border-orange-400 transition group flex flex-col h-full">
                     <div class="w-12 h-12 bg-orange-500 text-white rounded-2xl flex items-center justify-center mb-6 mx-auto group-hover:scale-110 transition">
                         <i data-lucide="printer"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-orange-600 dark:text-orange-400 uppercase">Cetak Kilat</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Kartu Nama, Sertifikat, & Spanduk (Siap Kirim).</p>
-                    <a href="https://api.whatsapp.com" class="text-sm font-bold text-slate-900 dark:text-slate-200 flex items-center justify-center gap-2">
+                    <h3 class="text-lg font-bold mb-3 text-orange-600 uppercase">Cetak Kilat</h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-grow">Cetak Kartu Nama, Stiker, dan Spanduk. Siap kirim dari Gresik.</p>
+                    <a href="https://api.whatsapp.com/send?phone=6285162634997&text=Halo,%20tanya%20harga%20cetak%20kilat." target="_blank" class="mt-auto text-sm font-bold flex items-center justify-center gap-2 hover:text-orange-600 transition">
                         Tanya Harga <i data-lucide="arrow-right" class="w-4"></i>
                     </a>
                 </div>
@@ -121,42 +117,24 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="py-12 border-t border-slate-200 dark:border-slate-800 text-center">
-        <p class="text-slate-400 dark:text-slate-500 text-xs tracking-widest font-bold">
-            &copy; 2026 By Aiti Studio
+        <p class="text-slate-400 text-xs tracking-widest font-bold">
+            &copy; 2026 BY AITI DESIGN
         </p>
     </footer>
 
     <script>
-    // Inisialisasi ikon
-    lucide.createIcons();
-
-    // Efek navigasi mengecil saat di-scroll
-    window.addEventListener('scroll', function() {
-        const nav = document.querySelector('nav');
-        if (window.scrollY > 50) {
-            nav.classList.add('py-1', 'shadow-lg');
-            nav.classList.remove('py-3');
-        } else {
-            nav.classList.add('py-3');
-            nav.classList.remove('py-1', 'shadow-lg');
-        }
-    });
-</script>
-
+        lucide.createIcons();
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-1', 'shadow-lg');
+                nav.classList.remove('py-3');
+            } else {
+                nav.classList.add('py-3');
+                nav.classList.remove('py-1', 'shadow-lg');
+            }
+        });
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
