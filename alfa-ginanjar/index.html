@@ -87,6 +87,344 @@
         .pause-spin {
             animation-play-state: paused;
         }
+
+        /* =============================================
+           LANDSCAPE / DESKTOP SPLIT SCREEN
+           ============================================= */
+
+        /* Panel kiri — tersembunyi di portrait */
+        #landscape-panel { display: none; }
+
+        /* Bunga di panel kiri */
+        .lp-flower {
+            position: absolute;
+            pointer-events: none;
+        }
+        .lp-bg-img {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center 25%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+        .lp-bg-img.active { opacity: 1; }
+
+        @keyframes float-lp {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50%       { transform: scale(1.1) rotate(3deg); }
+        }
+        .lp-float { animation: float-lp 5s ease-in-out infinite; }
+        .lp-float-r {
+            animation: float-lp 5s ease-in-out infinite;
+            transform: scaleX(-1);
+        }
+        .lp-float-r:hover { transform: scaleX(-1); }
+
+        /* Aktifkan split saat landscape ATAU layar lebar */
+        @media (min-width: 900px),
+               (orientation: landscape) and (min-width: 600px) {
+
+            body { overflow: hidden !important; }
+
+            /* Tampilkan panel kiri */
+            #landscape-panel {
+                display: flex !important;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                position: fixed;
+                left: 0; top: 0;
+                width: 45vw; height: 100vh;
+                z-index: 99;
+                overflow: hidden;
+                text-align: center;
+            }
+
+            /* Cover section geser ke kanan */
+            #cover {
+                left: 45vw !important;
+                right: 0 !important;
+                width: 55vw !important;
+            }
+
+            /* Semua section geser ke kanan */
+            section:not(#cover),
+            footer,
+            #lightbox-override {
+                margin-left: 45vw;
+                max-width: 55vw;
+                width: 55vw;
+            }
+
+            /* Lightbox tetap fullscreen */
+            #lightbox {
+                left: 0 !important;
+                width: 100vw !important;
+            }
+
+            /* Nav bawah: tengah dari panel kanan */
+            #nav-bawah {
+                left: 72.5vw !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-[#faf8f5] text-[#4a4036] font-sans-clean overflow-hidden">
+
+    <audio id="bgm" loop>
+        <source src="asset/musik.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- =============================================
+         PANEL KIRI — hanya tampil di landscape/desktop
+         ============================================= -->
+    <div id="landscape-panel">
+
+        <!-- Slideshow background (sinkron dengan cover) -->
+        <img src="asset/foto1.jpg" class="lp-bg-img active" alt="" />
+        <img src="asset/foto2.jpg" class="lp-bg-img" alt="" />
+        <img src="asset/foto3.jpg" class="lp-bg-img" alt="" />
+
+        <!-- Overlay gelap -->
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,0.25),rgba(0,0,0,0.65));z-index:1;"></div>
+
+        <!-- Bunga sudut kiri bawah -->
+        <img src="asset/bunga1.png" class="lp-flower lp-float"
+             style="width:55%;bottom:-4%;left:-8%;z-index:2;opacity:0.9;" alt="" />
+
+        <!-- Bunga sudut kanan bawah (mirror) -->
+        <img src="asset/bunga1.png" class="lp-flower lp-float"
+             style="width:45%;bottom:-4%;right:-8%;z-index:2;opacity:0.85;transform:scaleX(-1);animation-delay:.8s;" alt="" />
+
+        <!-- Bunga sudut kiri atas -->
+        <img src="asset/bunga1.png" class="lp-flower lp-float"
+             style="width:42%;top:-4%;left:-8%;z-index:2;opacity:0.75;transform:rotate(180deg);animation-delay:1.4s;" alt="" />
+
+        <!-- Bunga sudut kanan atas -->
+        <img src="asset/bunga1.png" class="lp-flower lp-float"
+             style="width:42%;top:-4%;right:-8%;z-index:2;opacity:0.75;transform:rotate(180deg) scaleX(-1);animation-delay:2s;" alt="" />
+
+        <!-- Konten teks -->
+        <div style="position:relative;z-index:3;padding:32px;">
+            <p style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:4px;color:rgba(255,255,255,0.7);text-transform:uppercase;margin-bottom:16px;">
+                Our Wedding
+            </p>
+            <h1 style="font-family:'MonteCarlo',cursive;font-size:clamp(48px,7vw,80px);color:#fff;line-height:1.1;margin-bottom:8px;text-shadow:0 2px 16px rgba(0,0,0,0.4);">
+                Ginanjar<br/>
+                <span style="font-family:'Cormorant Garamond',serif;font-size:0.6em;color:#e3bc9f;">&amp;</span><br/>
+                Alfa
+            </h1>
+            <div style="width:60px;height:1px;background:#e3bc9f;margin:16px auto;"></div>
+            <p style="font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:2px;color:rgba(255,255,255,0.8);">
+                Rabu, 01 April 2026
+            </p>
+        </div>
+    </div>
+    <!-- ============================================= -->
+
+    <section id="cover" class="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden bg-stone-900">
+        <img src="asset/foto1.jpg" class="bg-slide active object-cover object-[center_25%]" alt="Background Cover 1">
+        <img src="asset/foto2.jpg" class="bg-slide object-cover object-[center_25%]" alt="Background Cover 2">
+        <img src="asset/foto3.jpg" class="bg-slide object-cover object-[center_25%]" alt="Background Cover 3">
+
+        <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/60 to-black/90 z-[-1]"></div>
+      
+        <div class="reveal z-10 text-center px-6">
+            <h2 class="uppercase tracking-[0.3em] text-xs font-semibold mb-6 text-stone-300">The Wedding Of</h2>
+            <h1 class="text-5xl md:text-7xl font-pengantin-script font-normal text-white mb-8 drop-shadow-lg">Ginanjar & Alfa</h1>
+            
+            <div class="mb-10 text-sm text-stone-300">
+                <p class="mb-4">Kepada Yth:</p>
+                <p id="nama-tamu" class="text-2xl font-bold text-white mb-2 font-serif-elegant drop-shadow-md">Tamu Kehormatan</p>
+                <p>Di Tempat</p>
+            </div>
+
+            <button onclick="bukaUndanganCinematic()" class="inline-flex items-center gap-2 bg-[#8c7a6b] text-white px-8 py-3 rounded-md hover:bg-[#6e5f52] transition-colors duration-300 shadow-xl text-sm uppercase tracking-widest border border-white/20">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+                BUKA UNDANGAN
+            </button>
+        </div>
+    </section>
+
+    <section id="countdown" class="relative flex flex-col items-center justify-end min-h-screen overflow-hidden pb-32 pt-20">
+        
+        <img src="asset/foto2.jpg" class="bg-slide active object-cover object-[center_25%]" alt="Background Countdown 1">
+        <img src="asset/foto3.jpg" class="bg-slide object-cover object-[center_25%]" alt="Background Countdown 2">
+        <img src="asset/foto1.jpg" class="bg-slide object-cover object-[center_25%]" alt="Background Countdown 3">
+
+        <div class="absolute inset-0 bg-gradient-to-b from-white/0 via-white/40 to-white/80 z-[-1]"></div>
+	
+
+        <div class="absolute -bottom-6 -left-6 w-40 md:w-72 z-10 pointer-events-none">
+        <img src="asset/bunga1.png" class="w-full h-full animate-pulse-slow" alt="Bunga Kiri">
+    </div>
+    
+    <div class="absolute -bottom-6 -right-6 w-40 md:w-72 z-10 pointer-events-none scale-x-[-1]">
+        <img src="asset/bunga1.png" class="w-full h-full animate-pulse-slow delay-3" alt="Bunga Kanan">
+    </div>
+
+        <div class="z-10 text-center px-6 max-w-lg w-full relative reveal">
+            <h2 class="font-serif-elegant text-2xl font-bold md:text-2xl text-stone-800 mb-2 drop-shadow-md">The Wedding Of</h2>
+            <h1 class="text-6xl font-pengantin-script text-stone-800 mb-4 drop-shadow-lg">Ginanjar & Alfa</h1>
+            <p class="font-sans-clean text-lg uppercase md:text-xl text-stone-800 mb-10 font-semibold tracking-wide drop-shadow-md">Rabu, 01 April 2026</p>
+            
+            <div class="flex justify-center gap-6 md:gap-10 mb-10">
+                <div class="flex flex-col items-center">
+                    <span id="hari" class="text-4xl font-sans-clean font-semibold text-stone-800 drop-shadow-lg">00</span>
+                    <span class="text-xs uppercase tracking-widest text-stone-800 mt-1 drop-shadow-md">Hari</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span id="jam" class="text-4xl font-sans-clean font-semibold text-stone-800 drop-shadow-lg">00</span>
+                    <span class="text-xs uppercase tracking-widest text-stone-800 mt-1 drop-shadow-md">Jam</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span id="menit" class="text-4xl font-sans-clean font-semibold text-stone-800 drop-shadow-lg">00</span>
+                    <span class="text-xs uppercase tracking-widest text-stone-800 mt-1 drop-shadow-md">Menit</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span id="detik" class="text-4xl font-sans-clean font-semibold text-stone-800 drop-shadow-lg">00</span>
+                    <span class="text-xs uppercase tracking-widest text-stone-800 mt-1 drop-shadow-md">Detik</span>
+                </div>
+            </div>
+
+            <button onclick="downloadICS()" class="inline-flex items-center gap-2 bg-[#8c7a6b] text-white px-8 py-3 rounded-md shadow-xl hover:bg-[#6e5f52] transition-colors animate-pulse-slow font-sans-clean text-xs font-semibold tracking-wider uppercase z-20">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008z" />
+    </svg>
+    SIMPAN TANGGAL
+</button>
+        </div>
+<div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20 rotate-0">
+        <svg viewBox="0 0 1000 100" preserveAspectRatio="none" class="w-full h-10 md:h-16 block">
+            <path fill="#e3bc9f" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z"></path>
+        </svg>
+    </div>
+    </section>
+
+<section id="profil" class="relative py-32 flex flex-col items-center justify-center bg-[url('asset/bg-profil.jpg')] bg-cover bg-top bg-no-repeat overflow-hidden min-h-screen">
+        
+        <div class="absolute top-0 left-0 w-full overflow-hidden leading-none z-20 rotate-180">
+            <svg viewBox="0 0 1000 100" preserveAspectRatio="none" class="w-full h-10 md:h-16 block">
+                <path fill="#e3bc9f" d="M500,97C126.7,96.3,0.8,19.8,0,0v100l1000,0V1C1000,19.4,873.3,97.8,500,97z"></path>
+            </svg>
+        </div>
+
+        	<div class="absolute -top-6 -left-6 w-36 md:w-72 z-10 pointer-events-none">
+        <img src="asset/bunga1.png" class="w-full h-full animate-pulse-slow delay-3" alt="Kiri Atas">
+    	</div>
+    
+	<div class="absolute -top-6 -right-6 w-36 md:w-72 z-10 pointer-events-none rotate-270">
+        <img src="asset/bunga1.png" class="w-full h-full animate-pulse-slow delay-5" alt="Kanan Atas">
+    	</div>
+
+	<div class="absolute -bottom-6 -left-6 w-36 md:w-72 z-10 pointer-events-none">
+        <img src="asset/bunga1.png" class="w-full h-full animate-pulse-slow" alt="Kiri Bawah">
+    	</div>
+    
+	<div class="absolute -bottom-6 -right-6 w-36 md:w-72 z-10 pointer-events-none scale-x-[-1]">
+        <img src="asset/bunga1.png" class="w-full h-full animate-pulse-slow delay-2" alt="Kanan Bawah">
+    	</div>
+
+        <div class="z-10 text-center px-6 max-w-2xl w-full">
+            
+            <div class="reveal">
+                <h2 class="text-4xl md:text-5xl font-pengantin-script text-stone-800 mb-4 drop-shadow-md">Assalamu'alaikum Wr. Wb.</h2>
+                <p class="font-sans-clean text-sm md:text-base text-stone-700 mb-16 leading-relaxed font-semibold">
+                    Dengan memohon rahmat dan ridho Allah Subhanahu Wa Ta'ala, insyaaAllah kami akan menyelenggarakan acara pernikahan kami :
+                </p>
+            </div>
+
+            <div class="flex flex-col items-center mb-10 reveal">
+                <div class="relative w-48 h-64 md:w-56 md:h-72 mb-6">
+                    <img src="asset/bunga1.png" class="absolute -bottom-3 -right-12 w-72 md:w-72 max-w-none opacity-90 animate-pulse-slow delay-1 z-0" alt="Bunga Belakang">
+                    
+                    <div class="w-full h-full rounded-[100px] border-[7px] border-[#8c7a6b] shadow-xl overflow-hidden relative z-10 bg-stone-200 animate-pulse-medium">
+                        
+                        <img src="asset/foto-putra.jpg" class="w-full h-full object-cover object-top scale-[1.6] " alt="Mempelai Pria">
+                        
+                    </div>
+                </div>
+                
+                <h3 class="text-5xl md:text-6xl font-pengantin-script text-stone-800 mb-3 drop-shadow-md">Ginanjar Hadi Sukma, S.T.</h3>
+                
+                <a href="https://instagram.com/al_faa.r" target="_blank" class="inline-flex items-center gap-2 bg-[#8c7a6b] text-white px-5 py-2 rounded-md text-xs hover:bg-[#6e5f52] transition-colors shadow-md mb-5 font-sans-clean tracking-wider">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.7-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    @ginanjarhs
+                </a>
+                
+                <p class="font-sans-clean text-xl text-stone-700 font-semibold">Putra dari Bapak Hadi Suprayitno, S.E. & Ibu Mimin, S.Psi.</p>
+            </div>
+
+            <div class="text-5xl font-serif-elegant text-[#8c7a6b] mb-10 reveal drop-shadow-md">&</div>
+
+            <div class="flex flex-col items-center reveal">
+                <div class="relative w-48 h-64 md:w-56 md:h-72 mb-6">
+                    <img src="asset/bunga1.png" class="absolute -bottom-3 -right-12 w-72 md:w-72 max-w-none opacity-90 animate-pulse-slow z-0" alt="Bunga Belakang">
+                    
+                    <div class="w-full h-full rounded-[100px] border-[7px] border-[#8c7a6b] shadow-xl overflow-hidden relative z-10 bg-stone-200 animate-pulse-medium delay-3">
+                        
+                        <img src="asset/foto-putri.jpg" class="w-full h-full object-cover object-bottom scale-[1.6]" alt="Mempelai Wanita">
+                        
+                    </div>
+                </div>
+                
+                <h3 c        .bg-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            z-index: -2; /* Berada paling belakang */
+        }
+        .bg-slide.active { opacity: 1;}
+
+        /* Efek Cover Terbuka ke Atas */
+        .cover-opened { 
+            transform: translateY(-100vh); 
+            opacity: 0; 
+            pointer-events: none; 
+            transition: all 1.2s ease-in-out; 
+        }
+
+        /* Animasi Bunga & Tombol (Membesar & Mengecil / Pulsing) */
+        @keyframes pulse-slow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 3s ease-in-out infinite;
+	}
+	.animate-pulse-medium {
+            animation: pulse-slow 5s ease-in-out infinite;
+
+        }
+
+	/* efek delay
+	.delay-1 { animation-delay: 0.5s; }
+	.delay-2 { animation-delay: 1s; }
+	.delay-3 { animation-delay: 1.5s; }
+	.delay-4 { animation-delay: 2s; }
+	.delay-5 { animation-delay: 2.5s; }
+
+        /* Animasi Ikon Musik (Berputar) */
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 4s linear infinite;
+        }
+        
+        /* Kelas untuk menghentikan putaran saat musik pause */
+        .pause-spin {
+            animation-play-state: paused;
+        }
     </style>
 </head>
 <body class="bg-[#faf8f5] text-[#4a4036] font-sans-clean overflow-hidden">
