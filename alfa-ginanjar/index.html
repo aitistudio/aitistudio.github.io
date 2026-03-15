@@ -926,6 +926,25 @@ window.addEventListener('scroll', function() {
         }
     }
 });
+
+		// Disable klik kanan
+  document.addEventListener('contextmenu', e => e.preventDefault());
+
+  // Disable keyboard shortcut berbahaya
+  document.addEventListener('keydown', function(e) {
+    if (
+      e.key === 'F12' ||
+      (e.ctrlKey && e.shiftKey && ['i','j','c'].includes(e.key.toLowerCase())) ||
+      (e.ctrlKey && ['u','s','a'].includes(e.key.toLowerCase()))
+    ) {
+      e.preventDefault();
+    }
+  });
+
+  // Disable drag & select gambar
+  document.addEventListener('selectstart', e => e.preventDefault());
+  document.addEventListener('dragstart', e => e.preventDefault());
+		
 	</script>
 
 <div id="lightbox" class="fixed inset-0 z-[999] bg-black/95 hidden flex flex-col items-center justify-center p-4">
