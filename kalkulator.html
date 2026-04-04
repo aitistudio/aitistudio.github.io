@@ -53,6 +53,7 @@
         .tab-content.active { display: block; }
 
         .grid-input { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+        .grid-input-full { display: grid; grid-template-columns: 1fr; margin-bottom: 10px; }
         label { display: block; font-size: 11px; font-weight: bold; color: var(--text-muted); margin-bottom: 3px; text-transform: uppercase; }
         input { width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; box-sizing: border-box; background: var(--input-bg); color: var(--text-main); }
         
@@ -141,6 +142,9 @@
 
         <!-- TAB 3: CARI KELIPATAN -->
         <div id="tab-kelipatan" class="tab-content">
+            <div class="grid-input-full">
+                <div><label>Nama Pemesan (Opsional)</label><input type="text" id="nama_cust_kelipatan" placeholder="Contoh: Customer A"></div>
+            </div>
             <div class="grid-input">
                 <div><label>Muat Per Lembar (Pcs)</label><input type="number" id="kelipatan_pcs" placeholder="Contoh: 55"></div>
                 <div><label>Order Customer (Pcs)</label><input type="number" id="order_cust" placeholder="Contoh: 500"></div>
@@ -166,7 +170,7 @@
         <button class="btn-export" style="background:#e74c3c;" onclick="savePDF()">SIMPAN PDF</button>
     </div>
 
-    <!-- AREA LOG HISTORY (Hanya untuk Tab 1) -->
+    <!-- AREA LOG HISTORY (Tab 1 & 2) -->
     <div id="log-container" class="log-section">
         <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
             <strong>Riwayat Log (50 Terakhir)</strong>
@@ -174,6 +178,16 @@
         </div>
         <div id="log-list"></div>
     </div>
+
+    <!-- AREA LOG HISTORY KHUSUS KELIPATAN (Tab 3) -->
+    <div id="log-kelipatan-container" class="log-section" style="display:none;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+            <strong>Riwayat Kelipatan (50 Terakhir)</strong>
+            <button onclick="clearKelipatanLog()" style="font-size:10px; color:red; border:none; background:none; cursor:pointer;">Hapus Log</button>
+        </div>
+        <div id="log-kelipatan-list"></div>
+    </div>
+
 </div>
 
 <script>
@@ -188,7 +202,6 @@
             localStorage.setItem("theme", "dark");
         }
     }
-    // Set theme on load
     if (localStorage.getItem("theme") === "dark") document.body.dataset.theme = "dark";
 
     // SWITCH TAB UI
@@ -199,20 +212,22 @@
         event.target.classList.add('active');
         document.getElementById('tab-' + tabId).classList.add('active');
         
-        // Atur visibilitas elemen global berdasarkan tab
         const globalInputs = document.getElementById('global-inputs');
         const exportArea = document.getElementById('capture-area');
         const exportBtns = document.getElementById('export-buttons');
         const logArea = document.getElementById('log-container');
+        const logKelipatanArea = document.getElementById('log-kelipatan-container');
 
         if (tabId === 'kelipatan') {
             globalInputs.style.display = 'none';
             exportArea.style.display = 'none';
             exportBtns.style.display = 'none';
             logArea.style.display = 'none';
+            logKelipatanArea.style.display = 'block'; // Tampilkan log kelipatan
         } else {
             globalInputs.style.display = 'block';
             logArea.style.display = 'block';
+            logKelipatanArea.style.display = 'none'; // Sembunyikan log kelipatan
             if (document.getElementById('visual-sheet').innerHTML !== "") {
                 exportArea.style.display = 'block';
                 exportBtns.style.display = 'flex';
@@ -383,9 +398,22 @@
     }
 
     // TAB 3: CARI KELIPATAN
-    function hitungKelipatan() {
-        let kelipatan = parseInt(document.getElementById('kelipatan_pcs').value);
-        let order = parseInt(document.getElementById('order_cust').value);
+    function hitungKelipatan(isFromLog = false, logData = null) {
+        let kelipatan, order, namaCust;
+        
+        if (isFromLog) {
+            kelipatan = logData.kelipatan;
+            order = logData.order;
+            namaCust = logData.namaCust;
+            document.getElementById('kelipatan_pcs').value = kelipatan;
+            document.getElementById('order_cust').value = order;
+            document.getElementById('nama_cust_kelipatan').value = namaCust !== "Tanpa Nama" ? namaCust : "";
+        } else {
+            kelipatan = parseInt(document.getElementById('kelipatan_pcs').value);
+            order = parseInt(document.getElementById('order_cust').value);
+            namaCust = document.getElementById('nama_cust_kelipatan').value || "Tanpa Nama";
+        }
+        
         let box = document.getElementById('hasil-kelipatan');
 
         if (!kelipatan || !order) return alert("Masukkan nilai kelipatan dan order!");
@@ -420,9 +448,11 @@
             `;
         }
         box.classList.add('active');
+
+        if(!isFromLog) saveKelipatanLog(namaCust, kelipatan, order);
     }
 
-    // SYSTEM LOG & EXPORT
+    // SYSTEM LOG & EXPORT (TAB 1 & 2)
     function saveToLog(fullData, hasil, untung) {
         let logs = JSON.parse(localStorage.getItem('kalkulator_multi_logs')) || [];
         const entry = { ...fullData, hasil, untung, waktu: new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) };
@@ -450,8 +480,38 @@
         window.scrollTo({ top: document.getElementById('capture-area').offsetTop - 20, behavior: 'smooth' });
     }
 
-    function clearLog() { if(confirm("Hapus semua riwayat?")) { localStorage.removeItem('kalkulator_multi_logs'); renderLog(); } }
+    function clearLog() { if(confirm("Hapus semua riwayat layout?")) { localStorage.removeItem('kalkulator_multi_logs'); renderLog(); } }
     
+    // SYSTEM LOG KHUSUS KELIPATAN (TAB 3)
+    function saveKelipatanLog(namaCust, kelipatan, order) {
+        let logs = JSON.parse(localStorage.getItem('kalkulator_kelipatan_logs')) || [];
+        const entry = { namaCust, kelipatan, order, waktu: new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) };
+        logs.unshift(entry);
+        if(logs.length > 50) logs.pop();
+        localStorage.setItem('kalkulator_kelipatan_logs', JSON.stringify(logs));
+        renderKelipatanLog();
+    }
+
+    function renderKelipatanLog() {
+        const list = document.getElementById('log-kelipatan-list');
+        let logs = JSON.parse(localStorage.getItem('kalkulator_kelipatan_logs')) || [];
+        list.innerHTML = logs.map((l, index) => `
+            <div class="log-item">
+                <div><b style="color:var(--text-main);">${l.namaCust}</b><br><small style="color:var(--text-muted);">Isi ${l.kelipatan}/Lbr | Order: ${l.order} Pcs | ${l.waktu}</small></div>
+                <button class="btn-prev" style="background:#27ae60;" onclick='previewKelipatanLog(${index})'>PREVIEW</button>
+            </div>
+        `).join('');
+    }
+
+    function previewKelipatanLog(index) {
+        let logs = JSON.parse(localStorage.getItem('kalkulator_kelipatan_logs')) || [];
+        hitungKelipatan(true, logs[index]);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function clearKelipatanLog() { if(confirm("Hapus semua riwayat kelipatan?")) { localStorage.removeItem('kalkulator_kelipatan_logs'); renderKelipatanLog(); } }
+
+    // EXPORT FUNCTIONS
     function saveImage() { html2canvas(document.querySelector("#capture-area")).then(canvas => {
         let link = document.createElement('a'); link.download = `Layout-Multi.png`; link.href = canvas.toDataURL(); link.click();
     }); }
@@ -459,7 +519,11 @@
         const doc = new jsPDF(); doc.addImage(canvas.toDataURL('image/png'), 'PNG', 10, 10, 190, 0); doc.save("Layout-Multi.pdf");
     }); }
     
-    window.onload = renderLog;
+    // ON LOAD INITIALIZATION
+    window.onload = function() {
+        renderLog();
+        renderKelipatanLog();
+    };
 </script>
 </body>
 </html>
