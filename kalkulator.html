@@ -146,7 +146,7 @@
                 <div><label>Nama Pemesan (Opsional)</label><input type="text" id="nama_cust_kelipatan" placeholder="Contoh: Customer A"></div>
             </div>
             <div class="grid-input">
-                <div><label>Muat Per Lembar (Pcs)</label><input type="number" id="kelipatan_pcs" placeholder="Contoh: 55"></div>
+                <div><label>Kelipatan (Pcs)</label><input type="number" id="kelipatan_pcs" placeholder="Contoh: 55"></div>
                 <div><label>Order Customer (Pcs)</label><input type="number" id="order_cust" placeholder="Contoh: 500"></div>
             </div>
             <button class="btn-main btn-kelipatan" onclick="hitungKelipatan()">HITUNG KELIPATAN</button>
@@ -432,7 +432,7 @@
             let lembarNaik = Math.ceil(order / kelipatan);
 
             box.innerHTML = `
-                <div style="font-size: 12px; margin-bottom:10px; color: var(--text-muted);">Order ${order} pcs tidak sesuai kelipatan. Pilihan terdekat bisa co ${turun} Pcs atau ${naik} Pcs kakak</div>
+                <div style="font-size: 12px; margin-bottom:10px; color: var(--text-muted);">Order ${order} pcs tidak sesuai kelipatan ${kelipatan}. Pilihan terdekat bisa co ${turun} Pcs atau ${naik} Pcs kakak</div>
                 <div style="display:flex; justify-content:space-between; gap:10px;">
                     <div style="flex:1; padding:10px; border:1px solid var(--border-color); border-radius:8px;">
                         <div style="font-size:11px; text-transform:uppercase;">Opsi Turun</div>
