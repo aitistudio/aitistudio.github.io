@@ -397,7 +397,7 @@
         });
     }
 
-    // TAB 3: CARI KELIPATAN
+// TAB 3: CARI KELIPATAN
     function hitungKelipatan(isFromLog = false, logData = null) {
         let kelipatan, order, namaCust;
         
@@ -427,12 +427,22 @@
             `;
         } else {
             let turun = Math.floor(order / kelipatan) * kelipatan;
-            let naik = Math.ceil(order / kelipatan) * kelipatan;d
+            let naik = Math.ceil(order / kelipatan) * kelipatan; // Huruf 'd' nyasar sudah dihapus
             let lembarTurun = Math.floor(order / kelipatan);
             let lembarNaik = Math.ceil(order / kelipatan);
 
+            // Buat variabel khusus untuk teks yang akan disalin agar lebih rapi
+            let teksCopy = `Order ${order} pcs tidak sesuai kelipatan ${kelipatan} pcs. Pilihan terdekat bisa co ${turun} pcs atau ${naik} pcs kakak`;
+
+            // Struktur HTML sudah dirapikan dan ditambah fitur Copy Clipboard
             box.innerHTML = `
-                <div style="font-size: 12px; margin-bottom:10px; color: var(--text-muted);">Order ${order} pcs tidak sesuai kelipatan ${kelipatan} pcs. Pilihan terdekat bisa co ${turun} pcs atau ${naik} pcs kakak</div>
+                <div style="font-size: 12px; margin-bottom:10px; color: var(--text-muted);">${teksCopy}</div>
+                
+                <button onclick="navigator.clipboard.writeText('${teksCopy}').then(() => alert('Teks berhasil disalin!'))" 
+                        style="font-size: 10px; padding: 6px 12px; margin-bottom:15px; cursor: pointer; border-radius: 6px; border: 1px solid var(--border-color); background: var(--btn-opsi-bg); color: var(--text-main); font-weight: bold;">
+                    📋 Salin
+                </button>
+
                 <div style="display:flex; justify-content:space-between; gap:10px;">
                     <div style="flex:1; padding:10px; border:1px solid var(--border-color); border-radius:8px;">
                         <div style="font-size:11px; text-transform:uppercase;">Opsi Turun</div>
