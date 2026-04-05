@@ -86,6 +86,28 @@
         .log-section { background: var(--bg-card); padding: 15px; border-radius: 12px; margin-top: 15px; border: 1px solid var(--border-color); }
         .log-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid var(--border-color); font-size: 12px; }
         .btn-prev { background: #3498db; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-size: 10px; }
+
+        /* --- TOAST NOTIFICATION STYLES --- */
+        .toast-notif {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+        }
+        .toast-notif.show {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -190,7 +212,25 @@
 
 </div>
 
+<!-- ELEMEN TOAST NOTIFICATION -->
+<div id="toastNotif" class="toast-notif">✅ Teks berhasil disalin!</div>
+
 <script>
+    // --- FUNGSI SALIN TEKS & TOAST NOTIF ---
+    function salinKeClipboard(teks) {
+        navigator.clipboard.writeText(teks).then(() => {
+            const toast = document.getElementById("toastNotif");
+            toast.classList.add("show");
+            
+            // Otomatis hilangkan setelah 1.5 detik
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 1500);
+        }).catch(err => {
+            console.error("Gagal menyalin: ", err);
+        });
+    }
+
     // THEME TOGGLE
     function toggleTheme() {
         const body = document.body;
@@ -223,11 +263,11 @@
             exportArea.style.display = 'none';
             exportBtns.style.display = 'none';
             logArea.style.display = 'none';
-            logKelipatanArea.style.display = 'block'; // Tampilkan log kelipatan
+            logKelipatanArea.style.display = 'block';
         } else {
             globalInputs.style.display = 'block';
             logArea.style.display = 'block';
-            logKelipatanArea.style.display = 'none'; // Sembunyikan log kelipatan
+            logKelipatanArea.style.display = 'none';
             if (document.getElementById('visual-sheet').innerHTML !== "") {
                 exportArea.style.display = 'block';
                 exportBtns.style.display = 'flex';
@@ -397,7 +437,7 @@
         });
     }
 
-// TAB 3: CARI KELIPATAN
+    // TAB 3: CARI KELIPATAN
     function hitungKelipatan(isFromLog = false, logData = null) {
         let kelipatan, order, namaCust;
         
@@ -427,20 +467,18 @@
             `;
         } else {
             let turun = Math.floor(order / kelipatan) * kelipatan;
-            let naik = Math.ceil(order / kelipatan) * kelipatan; // Huruf 'd' nyasar sudah dihapus
+            let naik = Math.ceil(order / kelipatan) * kelipatan;
             let lembarTurun = Math.floor(order / kelipatan);
             let lembarNaik = Math.ceil(order / kelipatan);
 
-            // Buat variabel khusus untuk teks yang akan disalin agar lebih rapi
-            let teksCopy = `Order ${order} pcs tidak sesuai kelipatan ${kelipatan} pcs. Pilihan terdekat bisa co ${turun} pcs atau ${naik} pcs kakak`;
+            let teksCopy = `Order ${order} pcs tidak sesuai kelipatan ${kelipatan} pcs. Pilihan terdekat bisa co ${turun} pcs atau ${naik} pcs kakak.`;
 
-            // Struktur HTML sudah dirapikan dan ditambah fitur Copy Clipboard
             box.innerHTML = `
                 <div style="font-size: 12px; margin-bottom:10px; color: var(--text-muted);">${teksCopy}</div>
                 
-                <button onclick="navigator.clipboard.writeText('${teksCopy}').then(())" 
-                        style="font-size: 10px; padding: 6px 12px; margin-bottom:15px; cursor: pointer; border-radius: 6px; border: 1px solid var(--border-color); background: var(--btn-opsi-bg); color: var(--text-main); font-weight: bold;">
-                    📋 Salin
+                <button onclick="salinKeClipboard('${teksCopy}')" 
+                        style="font-size: 11px; padding: 6px 12px; margin-bottom:15px; cursor: pointer; border-radius: 6px; border: 1px solid var(--border-color); background: var(--btn-opsi-bg); color: var(--text-main); font-weight: bold;">
+                    📋 Salin Teks ke Customer
                 </button>
 
                 <div style="display:flex; justify-content:space-between; gap:10px;">
