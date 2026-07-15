@@ -85,7 +85,7 @@
 <script>
 // ====================================================================
 // MASUKKAN URL API WEB APP GOOGLE SCRIPT ANDA DI BAWAH INI
-const URL_API = "https://script.google.com/macros/s/AKfycbyEpxxusZ6dHZXrcHvFBut_G9Ba5XaztCns1IyP4KKAiqit7QvmXiXLLBYV30XwYwkhPw/exec";
+const URL_API = "https://script.google.com/macros/s/AKfycbwI-AA_R0WUF64tQlkVKL-21ASDUf0qiOrXRhXKqA0bFmMyGGnarry0M_eGM6HgvzKjrA/exec";
 // ====================================================================
 
 // 1. Logika Pengaktifan & Sinkronisasi Tombol Dark Mode
@@ -124,25 +124,33 @@ function muatDataStok() {
     .then(data => {
         let html = "";
         data.forEach(item => {
-            html += `
-                <tr class="hover:bg-gray-50 dark:hover:bg-gray-750/50 transition-colors">
-                    <td class="p-4 font-bold">${item.nama}</td>
-                    <td class="p-4 text-gray-600 dark:text-gray-300">${item.ukuran}</td>
-                    <td id="stok-${item.row}" class="p-4 font-semibold text-green-600 dark:text-green-400">${item.jumlah}</td>
-                    <td class="p-4">
-                        <div class="flex items-center justify-center gap-2">
-                            <input type="number" id="input-${item.row}" value="1" min="1" 
-                                class="w-16 p-1.5 text-center text-sm border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                            <span class="text-sm text-gray-500">Pack</span>
-                            <button onclick="kurangiStok(${item.row})" id="btn-${item.row}" 
-                                class="tab-btn border text-sm font-semibold px-3 py-1.5 rounded shadow-sm hover:opacity-90 active:scale-95 transition-all">
-                                Kurangi
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            `;
-        });
+    html += `
+        <tr class="hover:bg-gray-50 dark:hover:bg-gray-750/50 transition-colors">
+            <td class="p-4 font-bold">${item.nama}</td>
+            <td class="p-4 text-gray-600 dark:text-gray-300">${item.ukuran}</td>
+            <td id="stok-${item.row}" class="p-4 font-semibold text-green-600 dark:text-green-400">${item.jumlah}</td>
+            <td class="p-4">
+                <div class="flex items-center justify-center gap-2">
+                    <input type="number" id="input-${item.row}" value="1" min="1" 
+                        class="w-16 p-1.5 text-center text-sm border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <span class="text-sm text-gray-500">Pack</span>
+                    
+                    <!-- TOMBOL TAMBAH (RESTOK) -->
+                    <button onclick="prosesStok(${item.row}, 'tambah')" id="btn-tambah-${item.row}" 
+                        class="bg-green-600 hover:bg-green-700 text-white text-sm font-semibold px-3 py-1.5 rounded shadow-sm active:scale-95 transition-all">
+                        Tambah
+                    </button>
+                    
+                    <!-- TOMBOL KURANGI -->
+                    <button onclick="prosesStok(${item.row}, 'kurang')" id="btn-kurang-${item.row}" 
+                        class="bg-red-600 hover:bg-red-700 text-white text-sm font-semibold px-3 py-1.5 rounded shadow-sm active:scale-95 transition-all">
+                        Kurangi
+                    </button>
+                </div>
+            </td>
+        </tr>
+    `;
+});
         document.getElementById('tabelStok').innerHTML = html;
         statusText.innerText = "✓ Data sinkron dengan Spreadsheet.";
         statusText.className = "text-sm font-semibold text-green-600 dark:text-green-400 mt-1";
@@ -155,16 +163,19 @@ function muatDataStok() {
 
 
 // 3. Fungsi Eksekusi Pengurangan Stok Real-time
-function kurangiStok(nomorBaris) {
+function prosesStok(nomorBaris, jenisAksi) {
     const inputJumlah = document.getElementById(`input-${nomorBaris}`).value;
-    const btn = document.getElementById(`btn-${nomorBaris}`);
+    const btnTambah = document.getElementById(`btn-tambah-${nomorBaris}`);
+    const btnKurang = document.getElementById(`btn-kurang-${nomorBaris}`);
     
-    btn.disabled = true;
-    btn.innerText = "Proses...";
+    // Kunci tombol saat loading
+    btnTambah.disabled = true;
+    btnKurang.disabled = true;
 
     const payload = {
         row: nomorBaris,
-        jumlahKurang: inputJumlah
+        jumlahAksi: inputJumlah,
+        aksi: jenisAksi // Mengirim info apakah user klik 'tambah' atau 'kurang'
     };
 
     fetch(URL_API, {
@@ -173,13 +184,12 @@ function kurangiStok(nomorBaris) {
         body: JSON.stringify(payload)
     })
     .then(() => {
-        // Ambil data terbaru untuk merender ulang isi tabel secara real-time
-        muatDataStok(); 
+        muatDataStok(); // Ambil ulang data terbaru untuk render layar
     })
     .catch(err => {
-        alert("Gagal memproses pengurangan stok: " + err);
-        btn.disabled = false;
-        btn.innerText = "Kurangi";
+        alert("Gagal memproses data: " + err);
+        btnTambah.disabled = false;
+        btnKurang.disabled = false;
     });
 }
 
