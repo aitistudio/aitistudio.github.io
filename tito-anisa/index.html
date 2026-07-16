@@ -382,23 +382,23 @@ Browser Anda tidak mendukung video.
 
 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 reveal delay-1">
 
-<div class="md:col-span-2 md:row-span-2 overflow-hidden rounded-3xl shadow-xl shadow-[#0B2D57]/40 border-[5px] border-[#FCF5EF] cursor-pointer hover:scale-[1.02] transition-all" onclick="#openLightbox(0)">
+<div class="md:col-span-2 md:row-span-2 overflow-hidden rounded-3xl shadow-xl shadow-[#0B2D57]/40 border-[5px] border-[#FCF5EF] cursor-pointer hover:scale-[1.02] transition-all" onclick="openLightbox(0)">
 <img src="asset/foto1.jpg" class="w-full h-full object-cover min-h-[300px]" alt="Foto 1">
 </div>
 
-<div class="overflow-hidden rounded-3xl shadow-xl shadow-[#0B2D57]/40 border-[5px] border-[#FCF5EF] cursor-pointer hover:scale-[1.02] transition-all" onclick="#openLightbox(1)">
+<div class="overflow-hidden rounded-3xl shadow-xl shadow-[#0B2D57]/40 border-[5px] border-[#FCF5EF] cursor-pointer hover:scale-[1.02] transition-all" onclick="openLightbox(1)">
 <img src="asset/foto2.jpg" class="w-full h-full object-cover min-h-[200px]" alt="Foto 2">
 </div>
 
-<div class="overflow-hidden rounded-3xl shadow-xl shadow-[#0B2D57]/40 border-[5px] border-[#FCF5EF] cursor-pointer hover:scale-[1.02] transition-all" onclick="#openLightbox(2)">
+<div class="overflow-hidden rounded-3xl shadow-xl shadow-[#0B2D57]/40 border-[5px] border-[#FCF5EF] cursor-pointer hover:scale-[1.02] transition-all" onclick="openLightbox(2)">
 <img src="asset/foto3.jpg" class="w-full h-full object-cover min-h-[200px]" alt="Foto 3">
 </div>
 
-<div class="hidden overflow-hidden rounded-3xl shadow-xl shadow-[#0B2D57]/40 border-[5px] border-[#FCF5EF] cursor-pointer hover:scale-[1.02] transition-all" onclick="#openLightbox(3)">
+<div class="hidden overflow-hidden rounded-3xl shadow-xl shadow-[#0B2D57]/40 border-[5px] border-[#FCF5EF] cursor-pointer hover:scale-[1.02] transition-all" onclick="openLightbox(3)">
 <img src="asset/foto4.jpg" class="w-full h-full object-cover min-h-[200px]" alt="Foto 4">
 </div>
 
-<div class="hidden col-span-2 md:col-span-1 overflow-hidden rounded-3xl shadow-xl shadow-[#0B2D57]/40 border-[5px] border-[#FCF5EF] cursor-pointer hover:scale-[1.02] transition-all" onclick="#openLightbox(4)">
+<div class="hidden col-span-2 md:col-span-1 overflow-hidden rounded-3xl shadow-xl shadow-[#0B2D57]/40 border-[5px] border-[#FCF5EF] cursor-pointer hover:scale-[1.02] transition-all" onclick="openLightbox(4)">
 <img src="asset/foto5.jpg" class="w-full h-full object-cover min-h-[200px]" alt="Foto 5">
 </div>
 
@@ -849,7 +849,7 @@ updateLightboxContent();
 }
 
 const scriptURL = "https://script.google.com/macros/s/AKfycbytmSzDZ11AQhlbjm_rzIeLYiRsiWWGZbHe7duDveV0AUw-F1W-aLjAcYDwYsLD6G8dhQ/exec";
-const nomorWA = "6285162634997"; 
+const nomorWA = "6285959077754"; 
 
 // ====================================================================
 // FUNGSI 1: AMBIL DATA DARI GOOGLE SHEETS & TAMPILKAN SAAT WEB DIBUKA
@@ -1020,7 +1020,7 @@ window.addEventListener('scroll', function() {
 <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-4xl">&times;</button>
 <button onclick="prevImage()" class="absolute left-4 text-white text-5xl hover:text-stone-400">‹</button>
 <img id="lightbox-img" src="" class="max-w-full max-h-[70vh] rounded-lg shadow-2xl mb-6">
-<a id="drive-link" href="#" target="_blank" class="bg-white/20 hover:bg-white/40 text-white px-6 py-2 rounded-full text-sm font-sans-clean flex items-center gap-2 transition-all border border-white/30">
+<a id="drive-link" href="#" target="_blank" class="hidden bg-white/20 hover:bg-white/40 text-white px-6 py-2 rounded-full text-sm font-sans-clean flex items-center gap-2 transition-all border border-white/30">
 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
 Lihat Ukuran Asli
 </a>
