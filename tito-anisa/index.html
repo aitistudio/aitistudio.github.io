@@ -394,14 +394,6 @@ Browser Anda tidak mendukung video.
 <img src="asset/foto3.jpg" class="w-full h-full object-cover min-h-[200px]" alt="Foto 3">
 </div>
 
-<div class="hidden overflow-hidden rounded-3xl shadow-xl shadow-[#0B2D57]/40 border-[5px] border-[#FCF5EF] cursor-pointer hover:scale-[1.02] transition-all" onclick="openLightbox(3)">
-<img src="asset/foto4.jpg" class="w-full h-full object-cover min-h-[200px]" alt="Foto 4">
-</div>
-
-<div class="hidden col-span-2 md:col-span-1 overflow-hidden rounded-3xl shadow-xl shadow-[#0B2D57]/40 border-[5px] border-[#FCF5EF] cursor-pointer hover:scale-[1.02] transition-all" onclick="openLightbox(4)">
-<img src="asset/foto5.jpg" class="w-full h-full object-cover min-h-[200px]" alt="Foto 5">
-</div>
-
 </div>
 </div>
 </div>
@@ -812,14 +804,12 @@ END:VCALENDAR`;
             document.body.removeChild(link);
         }
 
-let images = ['asset/foto1.jpg', 'asset/foto2.jpg', 'asset/foto3.jpg', 'asset/foto4.jpg', 'asset/foto5.jpg'];
+let images = ['asset/foto1.jpg', 'asset/foto2.jpg', 'asset/foto3.jpg'];
 // Masukkan link Google Drive yang sesuai dengan urutan foto di atas
 let driveLinks = [
 'https://drive.google.com/file/d/1-Ilhyz5O7Sj_FdcTepSYMaRJ_P-kufog/view?usp=sharing',
 'https://drive.google.com/file/d/1cmZTIO1SGkZJstZH2GYsT7DWYG31ZQ6o/view?usp=sharing',
-'https://drive.google.com/file/d/1VZlEFfCpT9byVhyVmLXMh-gYinAET8bn/view?usp=sharing',
-'https://drive.google.com/file/d/1xP2Is1lREYCoR4McMO6LC22YI23PMQx9/view?usp=sharing',
-'https://drive.google.com/file/d/1IKocZMnkUeo6LOB9HCZuWSEOKC1g82Mn/view?usp=sharing'
+'https://drive.google.com/file/d/1VZlEFfCpT9byVhyVmLXMh-gYinAET8bn/view?usp=sharing'
 ];
 let currentIndex = 0;
 
