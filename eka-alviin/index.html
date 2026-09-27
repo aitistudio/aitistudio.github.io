@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 	<meta property="og:title" content="The Wedding of Eka & Alviin">
+	<meta property="og:description" content="Sabtu, 11 April 2026">
+	<meta property="og:image" content="https://aitidesign.my.id/eka-alviin/asset/tumb.jpg">
+	<meta property="og:url" content="https://aitidesign.my.id/eka-alviin/">
+	<meta property="og:type" content="website">
+	<meta name="twitter:card" content="summary_large_image">
+	<link rel="icon" type="image/png" href="https://aitidesign.my.id/favicon.png">
+    <title>The Wedding Of Eka & Alviin</title>
+	<meta name="color-scheme" content="light">
+	<meta name="supported-color-schemes" content="light">	
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+	
+  /* 1. @import SELALU PERTAMA */
+  @import url('https://fonts.googleapis.com/css2?family=MonteCarlo:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@300;400;600&display=swap');
+
+  /* 2. Baru @font-face setelah @import */
+	@font-face {
+	font-family: 'retrosignature';
+    src: url('asset/retrosignature.ttf') format('truetype');	}
+	
+	/* Font pengantin latin, Serif elegan untuk nama, Sans-serif bersih untuk info */
+        .font-pengantin-script { font-family: 'MonteCarlo', cursive; }
+		.font-tambahan-script { font-family: 'retrosignature', cursive; }
+        .font-serif-elegant { font-family: 'Playfair Display', serif; }
+        .font-sans-clean { font-family: 'Montserrat', sans-serif; }
+		
+	/* Efek Muncul Saat di Scroll (Reveal) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: all 0.8s ease-out; }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1); }
+
+        /* Efek Cover Terbuka ke Atas */
+        .cover-opened { 
+            transform: translateY(-100vh); 
+            opacity: 0; 
+            pointer-events: none; 
+            transition: all 1.2s ease-in-out; }
+
+        /* Animasi Bunga & Tombol (Membesar & Mengecil / Pulsing) */
+        @keyframes pulse-slow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); } }
+
+    .animate-pulse-slow {
+            animation: pulse-slow 3s ease-in-out infinite; }
+	.animate-pulse-medium {
+            animation: pulse-slow 5s ease-in-out infinite; }
+
+		/* Efek 1: Wiggle (Bergoyang miring seperti lonceng) */
+		@keyframes wiggle-slow {
+			0%, 100% { transform: rotate(-10deg); }
+			50% { transform: rotate(10deg); }
+		}
+		.animate-wiggle-slow {
+			animation: wiggle-slow 5s ease-in-out infinite;
+		}
+
+	/* efek delay */
+	.delay-1 { animation-delay: 0.5s; }
+	.delay-2 { animation-delay: 1s; }
+	.delay-3 { animation-delay: 1.5s; }
+	.delay-4 { animation-delay: 2s; }
+	.delay-5 { animation-delay: 2.5s; }
+
+        /* Animasi Ikon Musik (Berputar) */
+
+        @keyframes spin-slow {
+
+            from { transform: rotate(0deg); }
+
+            to { transform: rotate(360deg); } }
+
+        .animate-spin-slow {
+            animation: spin-slow 4s linear infinite; }
+
+        /* Kelas untuk menghentikan putaran saat musik pause */
+        .pause-spin {
+            animation-play-state: paused; }
+
+  </style>
+</head>
+
+<body class="bg-[#faf8f5] text-[#4a4036] font-sans-clean overflow-hidden">
+
+    <audio id="bgm" loop>
+
+        <source src="asset/musik.mp3" type="audio/mpeg">
+
+    </audio>
+	
+	<section id="cover" class="fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden bg-stone-900">
+	<div class="absolute inset-0 bg-stone-800 z-[-1]"></div>
+	
+	<div class="absolute -top-6 -left-6 w-32 md:w-72 z-10 pointer-events-none">
+        <img src="asset/bunga1.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Atas">
+    	</div>
+    
+	<div class="absolute -top-4 -right-6 w-36 md:w-72 z-10 pointer-events-none">
+        <img src="asset/bunga2.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Atas">
+    	</div>
+
+	<div class="absolute -bottom-4 -left-6 w-32 md:w-72 z-10 pointer-events-none">
+        <img src="asset/bunga3.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Bawah">
+    	</div>
+    
+	<div class="absolute -bottom-16 -right-6 w-32 md:w-72 z-10 pointer-events-none">
+        <img src="asset/bunga4.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Bawah">
+    	</div>
+	
+	<div class="flex flex-col items-center mb-5 reveal">
+                <div class="relative w-36 h-48 md:w-56 md:h-72 mb-6">
+                    <img src="asset/bunga6.png" class="absolute -bottom-4 -left-10 w-28 md:w-32 max-w-none opacity-90 animate-wiggle-slow delay-1 z-10" alt="Bunga Belakang">                   
+					<img src="asset/bunga5.png" class="absolute -bottom-4 -right-10 w-28 md:w-32 max-w-none opacity-90 animate-wiggle-slow delay-1 z-10" alt="Bunga Belakang">                   
+                    <div class="w-full h-full rounded-[40px_0px_40px_0px] border-[3px] border-[#D4B26F] shadow-xl overflow-hidden relative animate-pulse-slow delay-1 z-0 bg-stone-200">
+                        <img src="asset/foto1.jpg" class="w-full h-full object-cover object-top scale-[1] " alt="Foto Mempelai">                       
+                    </div>
+					</div>
+					</div>
+	
+	 <div class="reveal z-10 text-center px-6">
+            <h2 class="uppercase tracking-[0.3em] text-xs font-semibold mb-6 text-stone-300">The Wedding Of</h2>
+            <h1 class="text-5xl md:text-7xl font-pengantin-script font-normal text-[#D4B26F] mb-8 drop-shadow-lg">Eka & Alviin</h1>        
+            <div class="mb-10 text-sm text-stone-300">
+                <p class="mb-4">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+                <p id="nama-tamu" class="text-xl font-bold text-white mb-2 font-serif-elegant drop-shadow-md">Tamu Undangan Terhormat</p>
+                <p>Di Tempat</p>
+            </div>
+
+            <button onclick="bukaUndanganCinematic()" class="inline-flex animate-pulse-slow delay-3 items-center gap-2 bg-transparent border-[#D4B26F] border-[3px] text-white px-8 py-3 rounded-[100px] hover:bg-white/10 hover:border-white/60 transition-colors duration-300 shadow-xl text-sm uppercase tracking-widest">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+                BUKA UNDANGAN
+            </button>
+        </div>
+	</section>
+	
+	<section id="pembuka" class="relative flex flex-col bg-stone-800 items-center justify-center min-h-screen overflow-hidden py-4 shadow-[0_1px_0_0_#292524]">
+			<div class="absolute inset-0 bg-gradient-to-b from-stone-700 via-black to-stone-800 z-[-1]"></div>
+
+		<div class="absolute -top-6 -left-6 w-32 md:w-72 z-10 pointer-events-none">
+        <img src="asset/bunga1.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Atas">
+    	</div>
+    
+	<div class="absolute -top-4 -right-6 w-36 md:w-72 z-10 pointer-events-none">
+        <img src="asset/bunga2.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Atas">
+    	</div>
+
+	<div class="absolute -bottom-4 -left-6 w-32 md:w-72 z-10 pointer-events-none">
+        <img src="asset/bunga3.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Bawah">
+    	</div>
+    
+	<div class="absolute -bottom-16 -right-6 w-32 md:w-72 z-10 pointer-events-none">
+        <img src="asset/bunga4.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Bawah">
+    	</div>
+	
+	<div class="flex flex-col items-center mb-1 reveal">
+                <div class="relative w-36 h-48 md:w-56 md:h-72 mb-3">
+                    <img src="asset/bunga6.png" class="absolute -bottom-4 -left-10 w-28 md:w-32 max-w-none opacity-90 animate-wiggle-slow delay-1 z-10" alt="Bunga Belakang">                   
+					<img src="asset/bunga5.png" class="absolute -bottom-4 -right-10 w-28 md:w-32 max-w-none opacity-90 animate-wiggle-slow delay-1 z-10" alt="Bunga Belakang">                   
+                    <div class="w-full h-full rounded-[40px_0px_40px_0px] border-[3px] border-[#D4B26F] shadow-xl overflow-hidden relative animate-pulse-slow delay-1 z-0 bg-stone-200">
+                        <img src="asset/foto1.jpg" class="w-full h-full object-cover object-top scale-[1] " alt="Foto Mempelai">                       
+                    </div>
+					</div>
+					</div>
+	
+	 <div class="reveal z-10 text-center px-6">
+            <h2 class="uppercase tracking-[0.3em] text-xs font-semibold mb-3 text-stone-300">The Wedding Of</h2>
+            <h1 class="text-5xl md:text-7xl font-pengantin-script font-normal text-[#D4B26F] mb-4 drop-shadow-lg">Eka & Alviin</h1>        
+            <div class="mb-6 text-sm text-stone-300">
+                <p class="mb-2">Kami akan menikah, kami ingin anda menjadi bagian dari hari bahagia kami </p>
+            </div>
+			<div class="flex justify-center gap-3 md:gap-6 mb-6">
+            <div class="flex flex-col items-center justify-center bg-[#D4B26F] w-16 h-20 md:w-20 md:h-24 rounded-2xl shadow-md">
+                <span id="hari" class="text-2xl md:text-4xl font-sans-clean font-semibold text-stone-900 drop-shadow-sm">00</span>
+                <span class="text-[10px] md:text-xs uppercase tracking-widest text-stone-900 mt-1">Hari</span>
+            </div>
+            <div class="flex flex-col items-center justify-center bg-[#D4B26F] w-16 h-20 md:w-20 md:h-24 rounded-2xl shadow-md">
+                <span id="jam" class="text-2xl md:text-4xl font-sans-clean font-semibold text-stone-900 drop-shadow-sm">00</span>
+                <span class="text-[10px] md:text-xs uppercase tracking-widest text-stone-900 mt-1">Jam</span>
+            </div>
+            <div class="flex flex-col items-center justify-center bg-[#D4B26F] w-16 h-20 md:w-20 md:h-24 rounded-2xl shadow-md">
+                <span id="menit" class="text-2xl md:text-4xl font-sans-clean font-semibold text-stone-900 drop-shadow-sm">00</span>
+                <span class="text-[10px] md:text-xs uppercase tracking-widest text-stone-900 mt-1">Menit</span>
+            </div>
+            <div class="flex flex-col items-center justify-center bg-[#D4B26F] w-16 h-20 md:w-20 md:h-24 rounded-2xl shadow-md">
+                <span id="detik" class="text-2xl md:text-4xl font-sans-clean font-semibold text-stone-900 drop-shadow-sm">00</span>
+                <span class="text-[10px] md:text-xs uppercase tracking-widest text-stone-900 mt-1">Detik</span>
+            </div>
+        </div>
+		<div class="mb-10 text-sm text-stone-300">
+                <p class="mb-2">Minggu, 25 Oktober 2026</p>
+            </div>
+		<button onclick="downloadICS()" class="inline-flex items-center gap-2 bg-[#D4B26F] text-stone-900 px-8 py-3 rounded-full shadow-xl hover:bg-[#A77E2A] transition-colors animate-pulse-slow font-sans-clean text-xs font-semibold tracking-wider uppercase z-20">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008z" />
+            </svg>
+            SIMPAN TANGGAL
+        </button>
+		</div>
+		<div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20 rotate-180">
+    <!-- Ditambahkan transform="scaleY(-1)" untuk membalik kurva secara simetris -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"" class="w-full h-[40px] md:h-[70px]">
+        <path style="fill: #D4B26F;" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+        <path style="fill: #D4B26F;" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+        <path style="fill: #D4B26F;" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+    </svg>
+</div>
+	</section>
+	
+		<section id="surat" class="relative flex flex-col bg-stone-800 items-center justify-center min-h-screen overflow-hidden py-4 shadow-[0_1px_0_0_#292524]">
+			<div class="absolute inset-0 bg-gradient-to-b from-stone-700 via-black to-stone-800 z-[-1]"></div>
+
+		<div class="absolute -top-6 -left-6 w-32 md:w-72 z-10 pointer-events-none">
+        <img src="asset/bunga1.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Atas">
+    	</div>
+    
+	<div class="absolute -top-4 -right-6 w-36 md:w-72 z-10 pointer-events-none">
+        <img src="asset/bunga2.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Atas">
+    	</div>
+
+	<div class="absolute -bottom-4 -left-6 w-32 md:w-72 z-10 pointer-events-none">
+        <img src="asset/bunga3.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Bawah">
+    	</div>
+    
+	<div class="absolute -bottom-16 -right-6 w-32 md:w-72 z-10 pointer-events-none">
+        <img src="asset/bunga4.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Bawah">
+    	</div>
+	<div class="z-10 text-center px-6 max-w-2xl w-full">
+	<div class="reveal">
+                <h1 class="text-5xl md:text-5xl font-pengantin-script text-[#D4B26F] mb-3 drop-shadow-md">Ar-Rum 21</h1>
+				<h2 class="text-xl md:text-5xl font-sans-clean text-[#D4B26F] mb-3 drop-shadow-md">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُمْ مِنْ أَنْفُسِكُمْ أَزْوَاجًا لِتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَوَدَّةً وَرَحْمَةً إِنَّ فِي ذَلِكَ لَآيَاتٍ لِقَوْمٍ يَتَفَكَّرُونَ</h2>
+                <p class="font-sans-clean text-sm md:text-base text-white mb-6 leading-relaxed font-medium">
+                    "Dan Di Antara Tanda-Tanda (Kebesaran)-Nya Ialah Dia Menciptakan Pasangan-Pasangan Untukmu Dari Jenismu Sendiri, Agar Kamu Cenderung Dan Merasa Tenteram Kepadanya, Dan Dia Menjadikan Di Antaramu Rasa Kasih Dan Sayang. Sesungguhnya Pada Yang Demikian Itu Benar-Benar Terdapat Tanda-Tanda (Kebesaran Allah) Bagi Kaum Yang Berpikir."
+                </p>
+            </div>
+	</div>
+		<div class="absolute top-0 left-0 w-full overflow-hidden leading-none z-20">
+    <!-- Ditambahkan transform="scaleY(-1)" untuk membalik kurva secara simetris -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"" class="w-full h-[40px] md:h-[70px]">
+        <path style="fill: #D4B26F;" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+        <path style="fill: #D4B26F;" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+        <path style="fill: #D4B26F;" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+    </svg>
+</div>
+<div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20 rotate-180">
+    <!-- Ditambahkan transform="scaleY(-1)" untuk membalik kurva secara simetris -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"" class="w-full h-[40px] md:h-[70px]">
+        <path style="fill: #D4B26F;" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+        <path style="fill: #D4B26F;" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+        <path style="fill: #D4B26F;" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+    </svg>
+</div>
+	</section>
+	
+		<section id="profil" class="relative py-2 px-2 flex flex-col items-center justify-center bg-stone-900 overflow-hidden">
+<div class="absolute top-0 left-0 w-full overflow-hidden leading-none z-20">
+    <!-- Ditambahkan transform="scaleY(-1)" untuk membalik kurva secara simetris -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"" class="w-full h-[40px] md:h-[70px]">
+        <path style="fill: #D4B26F;" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+        <path style="fill: #D4B26F;" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+        <path style="fill: #D4B26F;" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+    </svg>
+</div>
+<div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20 rotate-180">
+    <!-- Ditambahkan transform="scaleY(-1)" untuk membalik kurva secara simetris -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"" class="w-full h-[40px] md:h-[70px]">
+        <path style="fill: #D4B26F;" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+        <path style="fill: #D4B26F;" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+        <path style="fill: #D4B26F;" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+    </svg>
+</div>
+<div class="absolute -top-6 -left-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga1.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Atas">
+    	</div>
+    
+	<div class="absolute -top-4 -right-6 w-36 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga2.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Atas">
+    	</div>
+
+	<div class="absolute -bottom-4 -left-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga3.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Bawah">
+    	</div>
+    
+	<div class="absolute -bottom-16 -right-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga4.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Bawah">
+    	</div>
+		
+	<div class="absolute top-[30%] -right-6 w-24 md:w-32 z-20 pointer-events-none">
+        <img src="asset/bunga4.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Bawah">
+    	</div>
+		
+	<div class="absolute top-[65%] -left-6 w-24 md:w-32 z-20 pointer-events-none">
+        <img src="asset/bunga1.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Bawah">
+    	</div>
+		
+        <div class="relative flex flex-col items-center reveal rounded-[10px] pt-16 px-4 drop-shadow-xl drop-shadow-black z-10 bg-stone-800 mt-10 mb-10 text-center w-[90%] md:w-[90%]">
+            <div class="reveal">
+                <h2 class="text-3xl md:text-4xl font-pengantin-script text-white mb-3 mt-20 drop-shadow-md">Assalamu'alaikum Wr. Wb.</h2>
+                <p class="font-sans-clean text-sm md:text-base text-white mb-6 leading-relaxed font-medium">
+                    Dengan memohon rahmat dan ridho Allah Subhanahu Wa Ta'ala, insyaaAllah kami akan menyelenggarakan acara pernikahan kami :
+                </p>
+            </div>
+
+            <div class="flex flex-col items-center mb-5 reveal px-4 drop-shadow-xl drop-shadow-black">
+                <div class="relative w-48 h-64 md:w-56 md:h-72 mb-6">
+                    <div class="w-full h-full rounded-[40px_0px_40px_0px] border-[3px] border-[#D4B26F] shadow-xl overflow-hidden relative animate-pulse-slow delay-1 z-0 bg-stone-200">
+                        <img src="asset/wanita.jpg" class="w-full h-full object-cover object-top scale-[1] " alt="Foto Mempelai">                       
+                    </div>
+                </div>
+                <h3 class="text-4xl md:text-6xl font-pengantin-script text-[#D4B26F] mb-3 drop-shadow-md">Eka Kusuma Wardani</h3>
+                <a href="https://instagram.com/al_faa.r" target="_blank" class="inline-flex items-center gap-2 bg-[#D4B26F] text-white px-5 py-2 rounded-md text-xs hover:bg-[#6e5f52] transition-colors shadow-md mb-5 font-sans-clean tracking-wider hidden">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.7-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    @al_faa.r
+                </a>
+                <p class="font-sans-clean text-base text-white font-medium">Putri dari Bapak Kaspandi & Ibu Suyanti</p>
+            </div>
+			<!-- Pemisah (&) -->
+        <div class="flex reveal items-center justify-center w-full my-8 mb-10">
+            <div class="h-[1px] w-1/4 bg-gradient-to-r from-transparent via-[#D4B26F] to-transparent"></div>
+            <span class="mx-6 text-5xl font-pengantin-script text-white">&</span>
+            <div class="h-[1px] w-1/4 bg-gradient-to-r from-transparent via-[#D4B26F] to-transparent"></div>
+        </div>			
+            <div class="flex flex-col items-center mb-10 reveal px-4 py-10 drop-shadow-xl drop-shadow-black">
+                <div class="relative w-48 h-64 md:w-56 md:h-72 mb-6">
+                    <div class="w-full h-full rounded-[40px_0px_40px_0px] border-[3px] border-[#D4B26F] shadow-xl overflow-hidden relative animate-pulse-slow delay-1 z-0 bg-stone-200">
+                        <img src="asset/pria.jpg" class="w-full h-full object-cover object-top scale-[1] " alt="Foto Mempelai">                       
+                    </div>
+                </div>
+                <h3 class="text-4xl md:text-6xl font-pengantin-script text-[#D4B26F] mb-3 drop-shadow-md">Ahmad Ainur Rofiq</h3>
+                <a href="https://instagram.com/al_faa.r" target="_blank" class="inline-flex items-center gap-2 bg-[#D4B26F] text-white px-5 py-2 rounded-md text-xs hover:bg-[#6e5f52] transition-colors shadow-md mb-5 font-sans-clean tracking-wider hidden">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.7-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    @al_faa.r
+                </a>
+                <p class="font-sans-clean text-base text-white font-medium">Putri dari Bapak Mujiono & Ibu Nurhayati</p>
+            </div>
+        </div>
+    </section>
+	
+	<section id="acara" class="relative py-2 px-2 flex flex-col items-center justify-center bg-stone-900 overflow-hidden">
+<div class="absolute top-0 left-0 w-full overflow-hidden leading-none z-20">
+    <!-- Ditambahkan transform="scaleY(-1)" untuk membalik kurva secara simetris -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"" class="w-full h-[40px] md:h-[70px]">
+        <path style="fill: #D4B26F;" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+        <path style="fill: #D4B26F;" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+        <path style="fill: #D4B26F;" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+    </svg>
+</div>
+<div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20 rotate-180">
+    <!-- Ditambahkan transform="scaleY(-1)" untuk membalik kurva secara simetris -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"" class="w-full h-[40px] md:h-[70px]">
+        <path style="fill: #D4B26F;" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+        <path style="fill: #D4B26F;" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+        <path style="fill: #D4B26F;" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+    </svg>
+</div>
+<div class="absolute -top-6 -left-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga1.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Atas">
+    	</div>
+    
+	<div class="absolute -top-4 -right-6 w-36 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga2.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Atas">
+    	</div>
+
+	<div class="absolute -bottom-4 -left-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga3.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Bawah">
+    	</div>
+    
+	<div class="absolute -bottom-16 -right-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga4.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Bawah">
+    	</div>
+		
+	<div class="absolute top-[30%] -right-6 w-24 md:w-32 z-20 pointer-events-none">
+        <img src="asset/bunga4.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Bawah">
+    	</div>
+		
+	<div class="absolute top-[65%] -left-6 w-24 md:w-32 z-20 pointer-events-none">
+        <img src="asset/bunga1.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Bawah">
+    	</div>
+		
+        <div class="relative flex flex-col items-center reveal rounded-[10px] pt-28 px-4 drop-shadow-xl drop-shadow-black z-10 bg-stone-800 mt-10 mb-10 text-center w-[90%] md:w-[90%]">
+            <div class="reveal">
+                <p class="font-sans-clean text-sm md:text-base text-white mb-6 leading-relaxed font-medium">
+                    Dengan segala kerendahan hati kami berharap kehadiran kehadiran Bapak/Ibu/Saudara/i dalam acara pernikahan anak kami yang akan diselenggarakan pada :
+                </p>
+            </div>
+			<div class="w-full max-w-md mx-auto mb-8 text-center px-4 py-8 reveal rounded-[10px] bg-stone-800 drop-shadow-2xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+    
+    <!-- 1. JUDUL ACARA (Menggunakan Font Script Undangan Warna Emas) -->
+    <h3 class="text-4xl md:text-5xl font-pengantin-script text-[#D4B26F] drop-shadow-sm mb-4">
+        Akad Nikah
+    </h3>
+
+    <!-- 2. BLOK TANGGAL DAN WAKTU DENGAN GARIS PEMBATAS ELEGAN -->
+    <!-- border-y: memberi garis atas & bawah tipis dengan opasitas 20% agar tidak terlalu mencolok -->
+    <div class="flex items-center justify-center gap-4 text-[#D4B26F] border-y-2 border-[#D4B26F]/40 py-3 my-4 max-w-xs mx-auto">
+        <!-- Hari -->
+        <span class="text-xs md:text-sm uppercase tracking-widest font-semibold text-stone-300">Minggu</span>
+        <!-- Tanggal (Diapit garis vertikal kiri-kanan 'border-x') -->
+        <span class="text-3xl font-bold border-x-2 border-[#D4B26F]/40 px-4 text-white font-xl">25</span>
+        <!-- Bulan & Tahun -->
+        <span class="text-xs md:text-sm uppercase tracking-widest font-semibold text-stone-300">Oktober</span>
+    </div>
+    
+    <!-- Tahun (Ditampilkan di bawah baris tanggal lurus tengah) -->
+    <p class="text-xl font-bold text-white tracking-widest font-xl mb-4">2026</p>
+
+    <!-- 3. DETAIL JAM ACARA -->
+    <p class="text-xs md:text-sm font-bold text-stone-200 tracking-wider mb-8">
+        Pukul : 08.00 WIB
+    </p>
+
+    <!-- 4. SUB-JUDUL LOKASI (Warna Emas Kecil) -->
+    <h4 class="text-xs md:text-sm text-[#D4B26F] uppercase tracking-[0.2em] font-bold mb-2">
+        Lokasi
+    </h4>
+
+    <!-- 5. BLOK ALAMAT LENGKAP -->
+    <div class="space-y-1 max-w-xs mx-auto mb-6 text-stone-300 font-sans-clean">
+        <p class="text-xs md:text-sm italic text-stone-400">Bertempat Di,</p>
+        <p class="text-sm md:text-base font-bold text-white tracking-wide">Kediaman Mempelai Wanita</p>
+        <p class="text-xs md:text-sm leading-relaxed text-stone-400 font-medium">
+            Desa Trosono Rt 10 Rw 05 Kec Sekaran Kab Lamongan
+        </p>
+    </div>
+
+    <!-- 6. TOMBOL LIHAT LOKASI MAPS (Ukuran kecil proporsional) -->
+    <a href="#" target="_blank" class="hidden inline-flex items-center justify-center gap-2 bg-[#D4B26F] text-black font-bold text-[10px] md:text-xs uppercase tracking-widest px-6 py-2 rounded-md hover:bg-white transition-colors shadow-md duration-300 mx-auto">
+        <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25s-7.5-4.108-7.5-11.25a7.5 7.5 0 1115 0z" />
+        </svg>
+        Lihat Lokasi
+    </a>
+
+</div>
+<div class="w-full max-w-md mx-auto mb-16 text-center px-4 py-8 reveal rounded-[10px] bg-stone-800 drop-shadow-2xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
+    
+    <!-- 1. JUDUL ACARA (Menggunakan Font Script Undangan Warna Emas) -->
+    <h3 class="text-4xl md:text-5xl font-pengantin-script text-[#D4B26F] drop-shadow-sm mb-4">
+        Resepsi
+    </h3>
+
+    <!-- 2. BLOK TANGGAL DAN WAKTU DENGAN GARIS PEMBATAS ELEGAN -->
+    <!-- border-y: memberi garis atas & bawah tipis dengan opasitas 20% agar tidak terlalu mencolok -->
+    <div class="flex items-center justify-center gap-4 text-[#D4B26F] border-y-2 border-[#D4B26F]/40 py-3 my-4 max-w-xs mx-auto">
+        <!-- Hari -->
+        <span class="text-xs md:text-sm uppercase tracking-widest font-semibold text-stone-300">Minggu</span>
+        <!-- Tanggal (Diapit garis vertikal kiri-kanan 'border-x') -->
+        <span class="text-3xl font-bold border-x-2 border-[#D4B26F]/40 px-4 text-white font-xl">25</span>
+        <!-- Bulan & Tahun -->
+        <span class="text-xs md:text-sm uppercase tracking-widest font-semibold text-stone-300">Oktober</span>
+    </div>
+    
+    <!-- Tahun (Ditampilkan di bawah baris tanggal lurus tengah) -->
+    <p class="text-xl font-bold text-white tracking-widest font-xl mb-4">2026</p>
+
+    <!-- 3. DETAIL JAM ACARA -->
+    <p class="text-xs md:text-sm font-bold text-stone-200 tracking-wider mb-8">
+        Pukul : Siang - Malam
+    </p>
+
+    <!-- 4. SUB-JUDUL LOKASI (Warna Emas Kecil) -->
+    <h4 class="text-xs md:text-sm text-[#D4B26F] uppercase tracking-[0.2em] font-bold mb-2">
+        Lokasi
+    </h4>
+
+    <!-- 5. BLOK ALAMAT LENGKAP -->
+    <div class="space-y-1 max-w-xs mx-auto mb-6 text-stone-300 font-sans-clean">
+        <p class="text-xs md:text-sm italic text-stone-400">Bertempat Di,</p>
+        <p class="text-sm md:text-base font-bold text-white tracking-wide">Kediaman Mempelai Wanita</p>
+        <p class="text-xs md:text-sm leading-relaxed text-stone-400 font-medium">
+            Desa Trosono Rt 10 Rw 05 Kec Sekaran Kab Lamongan
+        </p>
+    </div>
+
+    <!-- 6. TOMBOL LIHAT LOKASI MAPS (Ukuran kecil proporsional) -->
+    <a href="https://maps.app.goo.gl/DmqZBzhGwxZKjubd7" target="_blank" class="inline-flex items-center justify-center gap-2 bg-[#D4B26F] text-black font-bold text-[10px] md:text-xs uppercase tracking-widest px-6 py-2 rounded-md hover:bg-white transition-colors shadow-md duration-300 mx-auto">
+        <svg xmlns="http://w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-3.5 h-3.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25s-7.5-4.108-7.5-11.25a7.5 7.5 0 1115 0z" />
+        </svg>
+        Lihat Lokasi
+    </a>
+
+</div>
+        </div>
+    </section>
+	
+	
+	<section id="story" class="relative py-2 px-2 flex flex-col items-center justify-center bg-stone-900 overflow-hidden">
+<div class="absolute top-0 left-0 w-full overflow-hidden leading-none z-20">
+    <!-- Ditambahkan transform="scaleY(-1)" untuk membalik kurva secara simetris -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"" class="w-full h-[40px] md:h-[70px]">
+        <path style="fill: #D4B26F;" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+        <path style="fill: #D4B26F;" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+        <path style="fill: #D4B26F;" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+    </svg>
+</div>
+<div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20 rotate-180">
+    <!-- Ditambahkan transform="scaleY(-1)" untuk membalik kurva secara simetris -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"" class="w-full h-[40px] md:h-[70px]">
+        <path style="fill: #D4B26F;" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+        <path style="fill: #D4B26F;" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+        <path style="fill: #D4B26F;" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+    </svg>
+</div>
+<div class="absolute -top-6 -left-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga1.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Atas">
+    	</div>
+    
+	<div class="absolute -top-4 -right-6 w-36 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga2.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Atas">
+    	</div>
+
+	<div class="absolute -bottom-4 -left-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga3.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Bawah">
+    	</div>
+    
+	<div class="absolute -bottom-16 -right-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga4.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Bawah">
+    	</div>
+		
+        <div class="relative flex flex-col items-center reveal rounded-[10px] pt-28 px-4 drop-shadow-xl drop-shadow-black z-10 bg-stone-800 mt-10 mb-10 text-center w-[90%] md:w-[90%]">
+	<div class="container mx-auto max-w-2xl relative z-20">
+        
+        <!-- 1. JUDUL UTAMA SECTION -->
+        <h2 class="text-5xl md:text-5xl font-pengantin-script text-[#D4B26F] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-6 tracking-wide">
+            Our Story
+        </h2>
+        <div class="w-full mb-10 reveal flex flex-col">
+            <!-- Bingkai Foto Horizontal dengan Border Emas Tipis -->
+            <div class="items-center w-full aspect-[16/10] rounded-xl border-[2px] border-[#D4B26F]/80 shadow-2xl overflow-hidden mb-6 bg-stone-900">
+                <img src="asset/foto2.jpg" class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700" alt="Foto Awal Bertemu">
+            </div>
+            
+            <!-- Sub-Judul Cerita -->
+            <h3 class="text-3xl text-right md:text-4xl font-pengantin-script text-[#D4B26F] mb-3 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)]">
+                Tunangan
+            </h3>
+            
+            <!-- Teks Narasi Cerita -->
+            <p class="hidden font-sans-clean text-xs md:text-sm leading-relaxed text-stone-300 font-medium tracking-wide max-w-xl mx-auto px-2" style="text-shadow: 1px 1px 2px #000000;">
+                Tuliskan kisah awal pertemuan Anda di sini. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+            </p>
+        </div>
+        <div class="w-full mb-10 reveal flex flex-col">
+            <!-- Bingkai Foto Horizontal -->
+            <div class="items-center w-full aspect-[16/10] rounded-xl border-[2px] border-[#D4B26F]/80 shadow-2xl overflow-hidden mb-6 bg-stone-900">
+                <img src="asset/foto3.jpg" class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700" alt="Foto Berpacaran">
+            </div>
+            
+            <!-- Sub-Judul Cerita -->
+            <h3 class="text-3xl text-left md:text-4xl font-pengantin-script text-[#D4B26F] mb-3 drop-shadow-[0_2px_3px_rgba(0,0,0,0.8)]">
+                Menikah
+            </h3>
+            
+            <!-- Teks Narasi Cerita -->
+            <p class="hidden font-sans-clean text-xs md:text-sm leading-relaxed text-stone-300 font-medium tracking-wide max-w-xl mx-auto px-2" style="text-shadow: 1px 1px 2px #000000;">
+                Tuliskan kisah masa pacaran atau momen pendekatan Anda di sini. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+            </p>
+        </div>
+
+    </div>
+
+	
+	</div>
+	</section>
+	
+	<section id="story" class="relative py-2 px-2 flex flex-col items-center justify-center bg-stone-900 overflow-hidden">
+<div class="absolute top-0 left-0 w-full overflow-hidden leading-none z-20">
+    <!-- Ditambahkan transform="scaleY(-1)" untuk membalik kurva secara simetris -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"" class="w-full h-[40px] md:h-[70px]">
+        <path style="fill: #D4B26F;" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+        <path style="fill: #D4B26F;" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+        <path style="fill: #D4B26F;" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+    </svg>
+</div>
+<div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20 rotate-180">
+    <!-- Ditambahkan transform="scaleY(-1)" untuk membalik kurva secara simetris -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"" class="w-full h-[40px] md:h-[70px]">
+        <path style="fill: #D4B26F;" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+        <path style="fill: #D4B26F;" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+        <path style="fill: #D4B26F;" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+    </svg>
+</div>
+<div class="absolute -top-6 -left-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga1.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Atas">
+    	</div>
+    
+	<div class="absolute -top-4 -right-6 w-36 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga2.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Atas">
+    	</div>
+
+	<div class="absolute -bottom-4 -left-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga3.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Bawah">
+    	</div>
+    
+	<div class="absolute -bottom-16 -right-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga4.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Bawah">
+    	</div>
+		
+        <div class="relative flex flex-col items-center reveal rounded-[10px] pt-28 px-4 drop-shadow-xl drop-shadow-black z-10 bg-stone-800 mt-10 mb-10 text-center w-[90%] md:w-[90%]">
+	<div class="container mb-20 mx-auto max-w-2xl relative z-20">
+        
+        <!-- 1. JUDUL UTAMA SECTION -->
+        <h2 class="text-5xl md:text-5xl font-pengantin-script text-[#D4B26F] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] mb-6 tracking-wide">
+            Our Galery
+        </h2>
+        <div class="container mx-auto px-4 relative z-10 max-w-3xl">
+
+            <div class="columns-2 gap-4 space-y-4">
+                <div class="break-inside-avoid rounded-[20px] overflow-hidden border-2 border-[#D4B46A] cursor-pointer relative group" onclick="bukaLightbox(0)">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+                    <img src="asset/foto1.jpg" class="w-full h-auto object-cover" alt="Galeri 1">
+                </div>
+                <div class="break-inside-avoid rounded-[20px] overflow-hidden border-2 border-[#D4B46A] cursor-pointer relative group" onclick="bukaLightbox(1)">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+                    <img src="asset/foto2.jpg" class="w-full h-auto object-cover" alt="Galeri 2">
+                </div>
+                <div class="break-inside-avoid rounded-[20px] overflow-hidden border-2 border-[#D4B46A] cursor-pointer relative group" onclick="bukaLightbox(2)">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+                    <img src="asset/foto3.jpg" class="w-full h-auto object-cover" alt="Galeri 3">
+                </div>
+                <div class="break-inside-avoid rounded-[20px] overflow-hidden border-2 border-[#D4B46A] cursor-pointer relative group" onclick="bukaLightbox(3)">
+                    <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+                    <img src="asset/foto4.jpg" class="w-full h-auto object-cover" alt="Galeri 4">
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+
+	
+	</div>
+	</section>
+	
+	<section id="story" class="relative py-2 px-2 flex flex-col items-center justify-center bg-stone-900 overflow-hidden">
+<div class="absolute top-0 left-0 w-full overflow-hidden leading-none z-20">
+    <!-- Ditambahkan transform="scaleY(-1)" untuk membalik kurva secara simetris -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"" class="w-full h-[40px] md:h-[70px]">
+        <path style="fill: #D4B26F;" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+        <path style="fill: #D4B26F;" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+        <path style="fill: #D4B26F;" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+    </svg>
+</div>
+<div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20 rotate-180">
+    <!-- Ditambahkan transform="scaleY(-1)" untuk membalik kurva secara simetris -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"" class="w-full h-[40px] md:h-[70px]">
+        <path style="fill: #D4B26F;" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+        <path style="fill: #D4B26F;" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+        <path style="fill: #D4B26F;" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+    </svg>
+</div>
+<div class="absolute -top-6 -left-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga1.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Atas">
+    	</div>
+    
+	<div class="absolute -top-4 -right-6 w-36 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga2.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Atas">
+    	</div>
+
+	<div class="absolute -bottom-4 -left-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga3.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Bawah">
+    	</div>
+    
+	<div class="absolute -bottom-16 -right-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga4.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Bawah">
+    	</div>
+		
+        <div class="relative flex flex-col items-center reveal rounded-[10px] pt-28 px-4 drop-shadow-xl drop-shadow-black z-10 bg-stone-800 mt-10 mb-10 text-center w-[90%] md:w-[90%]">
+	<div class="container mb-10 mx-auto max-w-2xl relative z-20">
+		<div class="container mx-auto px-6 relative z-10 max-w-xl text-center flex flex-col justify-center min-h-full">
+            <div class="reveal mb-6">
+                <div class="w-full mb-10 reveal flex flex-col">
+            <!-- Bingkai Foto Horizontal -->
+            <div class="items-center w-full aspect-[16/10] rounded-xl border-[2px] border-[#D4B26F]/80 shadow-2xl overflow-hidden mb-6 bg-stone-900">
+                <img src="asset/foto4.jpg" class="w-full h-full object-cover object-[center_60%] hover:scale-105 transition-transform duration-700" alt="Foto Berpacaran">
+            </div>
+			</div>
+
+                <h2 class="text-5xl md:text-6xl font-pengantin-script text-[#C89B3C] mb-6 drop-shadow-sm">Kirim Hadiah</h2>
+                <p class="font-sans-clean text-white mb-8 px-4 text-sm md:text-base leading-relaxed">
+                    Doa Restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika memberi adalah ungkapan tanda kasih Anda, Anda dapat memberi kado secara cashless.
+                </p>
+
+                <button id="btn-tampil-gift" onclick="tampilkanRekening()" class="flex items-center justify-center gap-2 mx-auto bg-[#D4B26F] text-white px-10 py-4 rounded-full font-bold tracking-widest hover:bg-[#A77E2A] transition-all shadow-lg uppercase text-xs">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V6a2 2 0 10-2 2h2zm0 0H4v13a1 1 0 001 1h14a1 1 0 001-1V8h-8z"></path>
+                    </svg>
+                    <span>Kirim Hadiah</span>
+                </button>
+            </div>
+
+            <div id="grid-rekening" class="hidden grid grid-cols-1 gap-6 reveal mt-6 max-w-sm mx-auto w-full">
+                <div class="bg-stone-800 backdrop-blur-sm p-8 rounded-3xl drop-shadow-2xl drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] relative z-20">
+                    <img src="asset/bank-bca.svg" class="h-10 mx-auto mb-6 drop-shadow-sm" alt="Logo Permata">
+                    <p class="font-bold text-[#C89B3C] mb-3 text-lg">BANK BCA</p>
+                    <p class="font-mono text-2xl text-white tracking-widest mb-3 font-semibold" id="norek-1">3301067508</p>
+                    <p class="text-sm text-stone-200 mb-8 font-medium">A/n Eka Kusuma Wardani</p>
+                    <button onclick="salinNorek('3301067508')" class="bg-[#C89B3C] text-white font-bold text-xs px-8 py-3 rounded-full hover:bg-[#A77E2A] transition-all shadow-md tracking-wider">
+                        SALIN NOMOR
+                    </button>
+                </div>                
+                <div class="mt-4 z-20">
+                    <a href="https://api.whatsapp.com/send?phone=62895352700310&text=Hai%20Eka%20dan%20Alviin%2C%20Saya%20mau%20mengkonfirmasi%20pengiriman%20kado%20pernikahan%20berupa" target="_blank" class="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white px-8 py-3 rounded-full font-bold tracking-widest hover:bg-[#1DA851] transition-all shadow-lg text-xs w-full">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"></path>
+                        </svg>
+                        Konfirmasi Via WA Mempelai
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>	
+	</div>
+	</section>
+	
+	<section id="salam" class="relative flex flex-col bg-stone-800 items-center justify-center overflow-hidden pt-3 pb-10">
+	<div class="absolute top-0 left-0 w-full overflow-hidden leading-none z-20">
+    <!-- Ditambahkan transform="scaleY(-1)" untuk membalik kurva secara simetris -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"" class="w-full h-[40px] md:h-[70px]">
+        <path style="fill: #D4B26F;" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+        <path style="fill: #D4B26F;" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+        <path style="fill: #D4B26F;" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+    </svg>
+</div>
+<div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20 rotate-180">
+    <!-- Ditambahkan transform="scaleY(-1)" untuk membalik kurva secara simetris -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"" class="w-full h-[40px] md:h-[70px]">
+        <path style="fill: #D4B26F;" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+        <path style="fill: #D4B26F;" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+        <path style="fill: #D4B26F;" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+    </svg>
+</div>
+	
+	<div class="z-10 text-center mt-16 mb-10 px-16 max-w-2xl w-full">
+                <p class="font-sans-clean text-sm md:text-base text-white mb-2 leading-relaxed font-medium reveal">
+                    Merupakan suatu kehormatan dan kebahagiaan bagi kami. apabila bapak/ibu /saudara/i berkenan hadir untuk memberika do’a restu kepada kedua mempelai. Atas kehadiran dan Doa Restunya kami ucapkan terimakasih.
+                </p>
+				<h2 class="text-2xl md:text-4xl font-pengantin-script text-white mb-3 drop-shadow-md reveal">Wassalamu'alaikum Wr. Wb.</h2>
+            </div>
+	</section>
+	
+	<section id="rsvp" class="relative py-12 bg-stone-900 overflow-hidden h-auto shadow-[0_2px_0_0_#44403c]">
+
+	<div class="container mx-auto px-6 -mb-8 relative z-20 max-w-4xl">
+	<div class="text-center mb-12 reveal">
+	<h2 class="text-4xl md:text-5xl font-pengantin-script text-[#D4B26F] mt-20 mb-4">Buku Tamu</h2>
+	<p class="font-sans-clean text-white">Kehadiran dan doa restu Anda adalah kado terindah bagi kami.</p>
+	</div>
+
+	<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+	<div class="bg-stone-800 p-8 rounded-3xl shadow-xl border-b-8 border-[#D4B26F] reveal">
+	<form id="form-rsvp" class="space-y-4 mb-6">
+	<div>
+	<label class="block text-xs font-bold uppercase tracking-widest text-[#D4B26F] mb-2">Nama Lengkap</label>
+	<input type="text" id="nama" class="w-full bg-stone-50 border-none rounded-xl p-3 focus:ring-2 focus:ring-[#D4B26F]" placeholder="Nama Anda" required>
+	</div>
+	<div>
+	<label class="block text-xs font-bold uppercase tracking-widest text-[#D4B26F] mb-2">Konfirmasi Kehadiran</label>
+	<select id="kehadiran" class="w-full bg-stone-50 border-none rounded-xl p-3 focus:ring-2 focus:ring-[#D4B26F]">
+	<option value="Hadir">Saya Akan Hadir</option>
+	<option value="Tidak Hadir">Mohon Maaf, Berhalangan</option>
+	</select>
+	</div>
+	<div>
+	<label class="block text-xs font-bold uppercase tracking-widest text-[#D4B26F] mb-2">Pesan & Doa</label>
+	<textarea id="pesan" rows="4" class="w-full bg-stone-50 border-none rounded-xl p-3 focus:ring-2 focus:ring-[#D4B26F]" placeholder="Tulis ucapan selamat..." required></textarea>
+	</div>
+	<button type="submit" class="w-full bg-[#D4B26F] text-white py-4 rounded-xl font-bold tracking-widest hover:bg-[#FFD4DF] transition-all shadow-lg">KIRIM UCAPAN</button>
+	</form>
+	<div class="reveal delay-1">
+	<div class="bg-stone-800 rounded-3xl p-2 h-auto overflow-y-auto space-y-1 border border-stone-200" id="daftar-ucapan">
+	<div class="bg-white p-3 rounded-2xl shadow-sm border-r-4 border-[#FFD4DF]">
+	<p id="pesan-kosong" class="text-center text-stone-400 italic text-sm py-10">Belum ada ucapan. Jadilah yang pertama memberikan doa restu!</p>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	
+        <div class="absolute top-0 left-0 w-full overflow-hidden leading-none z-20">
+    <!-- Ditambahkan transform="scaleY(-1)" untuk membalik kurva secara simetris -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"" class="w-full h-[40px] md:h-[70px]">
+        <path style="fill: #D4B26F;" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+        <path style="fill: #D4B26F;" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+        <path style="fill: #D4B26F;" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+    </svg>
+</div>
+<div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20 rotate-180">
+    <!-- Ditambahkan transform="scaleY(-1)" untuk membalik kurva secara simetris -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"" class="w-full h-[40px] md:h-[70px]">
+        <path style="fill: #D4B26F;" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+        <path style="fill: #D4B26F;" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+        <path style="fill: #D4B26F;" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+    </svg>
+</div>
+<div class="absolute -top-6 -left-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga1.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Atas">
+    	</div>
+    
+	<div class="absolute -top-4 -right-6 w-36 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga2.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Atas">
+    	</div>
+
+	<div class="absolute -bottom-4 -left-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga3.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Bawah">
+    	</div>
+    
+	<div class="absolute -bottom-16 -right-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga4.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Bawah">
+    	</div>
+	
+</section>
+	
+		<section id="penutup" class="relative flex flex-col bg-stone-800 items-center justify-center overflow-hidden pt-10 pb-10">
+	<div class="absolute top-0 left-0 w-full overflow-hidden leading-none z-20">
+    <!-- Ditambahkan transform="scaleY(-1)" untuk membalik kurva secara simetris -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"" class="w-full h-[40px] md:h-[70px]">
+        <path style="fill: #D4B26F;" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+        <path style="fill: #D4B26F;" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+        <path style="fill: #D4B26F;" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+    </svg>
+</div>
+<div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-20 rotate-180">
+    <!-- Ditambahkan transform="scaleY(-1)" untuk membalik kurva secara simetris -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"" class="w-full h-[40px] md:h-[70px]">
+        <path style="fill: #D4B26F;" opacity="0.33" d="M473,67.3c-203.9,88.3-263.1-34-320.3,0C66,119.1,0,59.7,0,59.7V0h1000v59.7 c0,0-62.1,26.1-94.9,29.3c-32.8,3.3-62.8-12.3-75.8-22.1C806,49.6,745.3,8.7,694.9,4.7S492.4,59,473,67.3z"></path>
+        <path style="fill: #D4B26F;" opacity="0.66" d="M734,67.3c-45.5,0-77.2-23.2-129.1-39.1c-28.6-8.7-150.3-10.1-254,39.1 s-91.7-34.4-149.2,0C115.7,118.3,0,39.8,0,39.8V0h1000v36.5c0,0-28.2-18.5-92.1-18.5C810.2,18.1,775.7,67.3,734,67.3z"></path>
+        <path style="fill: #D4B26F;" d="M766.1,28.9c-200-57.5-266,65.5-395.1,19.5C242,1.8,242,5.4,184.8,20.6C128,35.8,132.3,44.9,89.9,52.5C28.6,63.7,0,0,0,0 h1000c0,0-9.9,40.9-83.6,48.1S829.6,47,766.1,28.9z"></path>
+    </svg>
+</div>
+<div class="absolute -top-6 -left-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga1.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Atas">
+    	</div>
+    
+	<div class="absolute -top-4 -right-6 w-36 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga2.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Atas">
+    	</div>
+
+	<div class="absolute -bottom-4 -left-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga3.png" class="w-full h-full animate-wiggle-slow" alt="Kiri Bawah">
+    	</div>
+    
+	<div class="absolute -bottom-16 -right-6 w-32 md:w-72 z-20 pointer-events-none">
+        <img src="asset/bunga4.png" class="w-full h-full animate-wiggle-slow" alt="Kanan Bawah">
+    	</div>
+	<div class="flex flex-col items-center mb-1 mt-20 reveal">
+                <div class="relative w-36 h-48 md:w-56 md:h-72 mb-3">
+                    <img src="asset/bunga6.png" class="absolute -bottom-4 -left-10 w-28 md:w-32 max-w-none opacity-90 animate-wiggle-slow delay-1 z-10" alt="Bunga Belakang">                   
+					<img src="asset/bunga5.png" class="absolute -bottom-4 -right-10 w-28 md:w-32 max-w-none opacity-90 animate-wiggle-slow delay-1 z-10" alt="Bunga Belakang">                   
+                    <div class="w-full h-full rounded-[40px_0px_40px_0px] border-[3px] border-[#D4B26F] shadow-xl overflow-hidden relative animate-pulse-slow delay-1 z-0 bg-stone-200">
+                        <img src="asset/foto3.jpg" class="w-full h-full object-cover object-top scale-[1] " alt="Foto Mempelai">                       
+                    </div>
+					</div>
+					</div>
+	<div class="z-10 text-center px-6 max-w-2xl w-full">
+                <p class="font-sans-clean text-sm md:text-base text-white mb-2 leading-relaxed font-medium reveal">
+                    Kami yang berbahagia, keluarga besar kedua mempelai
+				</p>
+				<h2 class="text-5xl md:text-7xl text-[#D4B26F] font-pengantin-script mb-3 drop-shadow-md reveal">Eka & Alviin</h2>
+            </div>
+			<div class="mb-10 flex items-center justify-center gap-4">
+  <!-- Garis Kiri -->
+  <div class="h-px w-20 bg-white"></div>
+  
+  <!-- Ikon Hati (SVG) -->
+  <svg xmlns="http://www.w3.org" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#D4B26F" class="w-6 h-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+  </svg>
+
+  <!-- Garis Kanan -->
+  <div class="h-px w-20 bg-white"></div>
+</div>
+	</section>
+
+    <!-- LIGHTBOX (Pop-up Tampilan Layar Penuh - Dipindah ke dalam body agar DOM terbaca) -->
+    <div id="lightbox" class="fixed inset-0 z-[999] bg-black/90 hidden flex-col transition-opacity">
+        <div class="flex justify-between items-center p-4 text-white z-50">
+            <div id="lightbox-counter" class="text-sm font-sans-clean font-semibold tracking-widest pl-2">1 / 6</div>
+            <div class="flex items-center gap-4 pr-2">
+                <button onclick="toggleFullscreen()" class="hover:text-stone-400 transition-colors">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                </button>
+                <button id="btn-zoom" onclick="toggleZoom()" class="hover:text-stone-400 transition-colors">
+                    <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zm2.5-4h-2v2H9v-2H7V9h2V7h1.5v2h2v1.5z"/></svg>
+                </button>
+                <button onclick="tutupLightbox()" class="hover:text-stone-400 transition-colors ml-2">
+                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="flex-1 flex items-center justify-center relative overflow-hidden">
+            <button onclick="geserKiri()" class="absolute left-2 md:left-8 text-white hover:text-stone-400 p-2 z-50">
+                <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></svg>
+            </button>
+            <div id="zoom-container" class="w-full h-full flex items-center justify-center transition-transform duration-300 ease-out cursor-zoom-in overflow-auto">
+                <img id="lightbox-img" src="" class="max-w-full max-h-full object-contain pointer-events-none px-12 md:px-24">
+            </div>
+            <button onclick="geserKanan()" class="absolute right-2 md:right-8 text-white hover:text-stone-400 p-2 z-50">
+                <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <button id="btn-musik" onclick="toggleMusik()" class="fixed bottom-6 right-6 z-[90] bg-[#D4B26F] p-3 rounded-full shadow-2xl text-white hidden hover:bg-[#A77E2A] transition-colors">
+        <svg id="ikon-musik" class="w-6 h-6 animate-spin-slow pause-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
+        </svg>
+    </button>
+
+    <footer class="bg-[#D4B26F] pt-8 pb-28 text-center">
+        <div class="container mx-auto px-6">
+            <a href="https://api.whatsapp.com/send?phone=628984507267&text=saya%20tertarik%20dengan%20undangan%20web%20kode%20KC01%20boleh%20tanya-tanya%20kak%3F" target="_blank" class="font-sans-clean font-medium text-stone-900 text-sm mb-4">
+                Tertarik!!! Di Desain oleh © <span class="font-bold text-red-950">Aiti Design</span> - 2026, All Rights Reserved.
+            </a>
+        </div>
+    </footer>
+
+    <nav id="nav-bawah" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-[#D4B26F] px-6 py-3 rounded-full shadow-2xl flex items-center gap-6 border border-white/30 transition-all duration-700 translate-y-32 opacity-0">
+        <a href="#countdown" data-section="#countdown" class="nav-link flex flex-col items-center group">
+            <svg class="w-5 h-5 text-[#0B2D57] group-hover:text-[#0E2138] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+        </a>
+        <a href="#profil" data-section="#profil" class="nav-link flex flex-col items-center group">
+            <svg class="w-5 h-5 text-[#0B2D57] group-hover:text-[#0E2138] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+        </a>
+        <a href="#acara" data-section="#acara" class="nav-link flex flex-col items-center group">
+            <svg class="w-5 h-5 text-[#0B2D57] group-hover:text-[#0E2138] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+        </a>
+        <a href="#galeri" data-section="#galeri" class="nav-link flex flex-col items-center group">
+            <svg class="w-5 h-5 text-[#0B2D57] group-hover:text-[#0E2138] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"></path></svg>
+        </a>
+        <a href="#rsvp" data-section="#rsvp" class="nav-link flex flex-col items-center group">
+            <svg class="w-5 h-5 text-[#0B2D57] group-hover:text-[#0E2138] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+        </a>
+    </nav>
+
+    <script>
+        // --- 1. Logika Slideshow Fleksibel (Cover & Countdown) ---
+        function jalankanSlideshow(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (!section) return;
+            const slides = section.querySelectorAll('.bg-slide');
+            let currentSlide = 0;
+
+            if (slides.length > 0) {
+                setInterval(() => {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slides[currentSlide].classList.add('active');
+                }, 3500); 
+            }
+        }
+
+        jalankanSlideshow('cover');
+        jalankanSlideshow('countdown');
+
+        // --- 2. Tangkap Nama Tamu (URL Parameter) ---
+        const params = new URLSearchParams(window.location.search);
+        const tamu = params.get('to');
+        if (tamu) document.getElementById('nama-tamu').innerText = tamu;
+
+        // --- 3. Fungsi Cinematic: Buka Cover & Musik ---
+        const bgm = document.getElementById('bgm');
+        const btnMusik = document.getElementById('btn-musik');
+        const ikonMusik = document.getElementById('ikon-musik');
+        let isCinematicMode = false;
+
+        function bukaUndanganCinematic() {
+            const cover = document.getElementById('cover');
+            const elem = document.documentElement; 
+
+            cover.classList.add('cover-opened');
+            document.body.classList.remove('overflow-hidden');
+            
+            if (elem.requestFullscreen) { elem.requestFullscreen(); } 
+            else if (elem.webkitRequestFullscreen) { elem.webkitRequestFullscreen(); }
+
+            bgm.play();
+            isCinematicMode = true;
+            btnMusik.classList.remove('hidden');
+            ikonMusik.classList.remove('pause-spin');
+
+            window.scrollTo(0, 0);
+            setTimeout(() => { cover.style.display = 'none'; }, 1200);
+        }
+
+        let statusMusikManual = true; 
+        function toggleMusik() {
+            if (bgm.paused) {
+                bgm.play();
+                statusMusikManual = true;
+                ikonMusik.classList.remove('pause-spin');
+            } else {
+                bgm.pause();
+                statusMusikManual = false;
+                ikonMusik.classList.add('pause-spin');
+            }
+        }
+
+        document.addEventListener("visibilitychange", function() {
+            if (document.hidden) {
+                bgm.pause();
+            } else {
+                if (isCinematicMode && statusMusikManual) {
+                    bgm.play();
+                    ikonMusik.classList.remove('pause-spin');
+                }
+            }
+        });
+        
+        // --- 6. Logika Hitung Mundur (Countdown) ---
+        const hariH = new Date("October 25, 2026 12:00:00").getTime();
+        setInterval(() => {
+            const sekarang = new Date().getTime();
+            const selisih = hariH - sekarang;
+            
+            if (selisih > 0) {
+                document.getElementById('hari').innerText = Math.floor(selisih / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                document.getElementById('jam').innerText = Math.floor((selisih % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                document.getElementById('menit').innerText = Math.floor((selisih % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                document.getElementById('detik').innerText = Math.floor((selisih % (1000 * 60)) / 1000).toString().padStart(2, '0');
+            }
+        }, 1000);
+
+        // --- 7. Mesin Animasi Scroll (Reveal) ---
+        function efekScroll() {
+            const reveals = document.querySelectorAll(".reveal");
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 50;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                } else {
+                    reveals[i].classList.remove("active"); 
+                }
+            }
+        }
+        window.addEventListener("scroll", efekScroll);
+        efekScroll();
+
+        // --- 8. Logika Simpan Kalender Universal (.ics) ---
+        function downloadICS() {
+            const judul = "The Wedding of Eka & Alviin";
+            const lokasi = "Desa Trosono Rt 10 Rw 05 Kec Sekaran Kab Lamongan";
+            const deskripsi = "Kehadiran dan doa restu Bapak/Ibu/Saudara/i merupakan kehormatan bagi kami.";
+            const waktuMulai = "20261025T050000Z";
+            const waktuSelesai = "20261025T130000Z";
+
+            const icsData = `BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:${judul}
+DTSTART:${waktuMulai}
+DTEND:${waktuSelesai}
+LOCATION:${lokasi}
+DESCRIPTION:${deskripsi}
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.setAttribute('download', 'Undangan_Eka_Alviin.ics');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // --- LOGIKA LIGHTBOX GALERI ---
+        const daftarFoto = [
+            'asset/foto1.jpg', 'asset/foto2.jpg', 'asset/foto3.jpg', 
+            'asset/foto4.jpg', 'asset/foto5.jpg', 'asset/foto6.jpg'
+        ];
+        let indeksAktif = 0;
+        let statusZoom = false;
+
+        const popLightbox = document.getElementById('lightbox');
+        const imgLightbox = document.getElementById('lightbox-img');
+        const teksCounter = document.getElementById('lightbox-counter');
+        const wadahZoom = document.getElementById('zoom-container');
+
+        function perbaruiTampilanLightbox() {
+            imgLightbox.src = daftarFoto[indeksAktif];
+            teksCounter.innerText = `${indeksAktif + 1} / ${daftarFoto.length}`;
+            resetZoom();
+        }
+
+        function bukaLightbox(index) {
+            indeksAktif = index;
+            perbaruiTampilanLightbox();
+            popLightbox.classList.remove('hidden');
+            popLightbox.classList.add('flex');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function tutupLightbox() {
+            popLightbox.classList.add('hidden');
+            popLightbox.classList.remove('flex');
+            document.body.classList.remove('overflow-hidden');
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            }
+        }
+
+        function geserKanan() {
+            indeksAktif = (indeksAktif + 1) % daftarFoto.length;
+            perbaruiTampilanLightbox();
+        }
+
+        function geserKiri() {
+            indeksAktif = (indeksAktif - 1 + daftarFoto.length) % daftarFoto.length;
+            perbaruiTampilanLightbox();
+        }
+
+        function toggleZoom() {
+            statusZoom = !statusZoom;
+            if (statusZoom) {
+                wadahZoom.style.transform = 'scale(1.8)';
+                wadahZoom.classList.replace('cursor-zoom-in', 'cursor-zoom-out');
+            } else {
+                resetZoom();
+            }
+        }
+
+        function resetZoom() {
+            statusZoom = false;
+            wadahZoom.style.transform = 'scale(1)';
+            wadahZoom.classList.replace('cursor-zoom-out', 'cursor-zoom-in');
+        }
+
+        wadahZoom.addEventListener('click', toggleZoom);
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                if (popLightbox.requestFullscreen) {
+                    popLightbox.requestFullscreen();
+                } else if (popLightbox.webkitRequestFullscreen) {
+                    popLightbox.webkitRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                }
+            }
+        }
+
+        const scriptURL = "https://script.google.com/macros/s/AKfycbx7h_qKJrYQkY3UAuP9I-HnCTGhhgWRB3lEhnWQwapgxRLJpZsbZ77aoZe-vhUxWV-f/exec";
+        const nomorWA = "62895352700310"; 
+
+        // ====================================================================
+// FUNGSI 1: AMBIL DATA TERBARU DARI GOOGLE SHEETS (ANTI-CACHE)
+// ====================================================================
+function muatSemuaUcapan() {
+  const daftar = document.getElementById('daftar-ucapan');
+  
+  // Tampilkan teks loading sebentar saat mengambil data segar dari server
+  daftar.innerHTML = `<p id="loading-rsvp" class="text-center text-xs text-stone-400 italic py-4 animate-pulse">Memuat ucapan terbaru...</p>`;
+  
+  // Tambahkan parameter ?v=timestamp di belakang URL untuk memaksa browser mengambil data baru, BUKAN dari cache
+  fetch(scriptURL + "?v=" + new Date().getTime())
+  .then(res => res.json())
+  .then(data => {
+    if (data && data.length > 0) {
+      // Simpan cache terbaru
+      localStorage.setItem('cache_ucapan_rsvp', JSON.stringify(data));
+      renderKartuUcapan(data);
+    } else {
+      localStorage.removeItem('cache_ucapan_rsvp');
+      daftar.innerHTML = `<p id="pesan-kosong" class="text-center text-sm text-stone-400 py-4">Belum ada ucapan. Jadilah yang pertama!</p>`;
+    }
+  })
+  .catch(error => {
+    console.error('Gagal memperbarui ucapan:', error);
+    // Jika gagal terhubung, fallback pakai data lokal terakhir jika ada
+    const dataLokal = localStorage.getItem('cache_ucapan_rsvp');
+    if (dataLokal) {
+      renderKartuUcapan(JSON.parse(dataLokal));
+    } else {
+      daftar.innerHTML = `<p id="pesan-kosong" class="text-center text-sm text-stone-400 py-4">Belum ada ucapan.</p>`;
+    }
+  });
+}
+
+        function renderKartuUcapan(dataArray) {
+          const daftar = document.getElementById('daftar-ucapan');
+          let htmlSemuaKartu = "";
+          
+          [...dataArray].reverse().forEach(item => {
+            htmlSemuaKartu += `<div class="bg-white p-4 rounded-2xl shadow-sm border-l-4 border-[#C89B3C] mb-4">
+              <p class="font-bold text-gray-800 text-sm">${item.nama}</p>
+              <p class="text-xs text-stone-500 mb-2">${item.hadir}</p>
+              <p class="text-sm text-stone-600 italic">"${item.pesan}"</p>
+            </div>`;
+          });
+          
+          daftar.innerHTML = htmlSemuaKartu;
+          document.getElementById('pesan-kosong')?.remove();
+        }
+
+        muatSemuaUcapan();
+
+        // --- RSVP SUBMIT (Diperbaiki agar tidak langsung meredirect paksa halaman utama) ---
+        document.getElementById('form-rsvp').addEventListener('submit', function(e) {
+          e.preventDefault();
+
+          const nama = document.getElementById('nama').value;
+          const hadir = document.getElementById('kehadiran').value;
+          const pesan = document.getElementById('pesan').value;
+
+          fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: JSON.stringify({ nama, hadir, pesan })
+          })
+          .then(() => {
+            console.log('Sukses masuk Sheets!');
+            muatSemuaUcapan(); 
+          })
+          .catch(error => console.error('Gagal masuk Sheets!', error));
+
+          const teksWA = `Halo, aku ${nama}.\naku ${hadir},\n ${pesan}`;
+          const linkWA = `https://api.whatsapp.com/send?phone=${nomorWA}&text=${encodeURIComponent(teksWA)}`;
+
+          this.reset();
+          alert('Terima kasih! Ucapan Kamu sudah terkirim. Klik OK untuk membuka WhatsApp.');
+          
+          // Membuka WhatsApp di tab/jendela baru agar posisi web undangan tidak terlempar ke atas
+          window.open(linkWA, '_blank');
+        });
+
+        function tampilkanRekening() {
+            const grid = document.getElementById('grid-rekening');
+            const btn = document.getElementById('btn-tampil-gift');
+            grid.classList.remove('hidden');
+            grid.classList.add('active');
+            btn.style.display = 'none';
+
+            setTimeout(() => {
+                grid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+
+        function salinNorek(nomor) {
+            navigator.clipboard.writeText(nomor);
+            alert("Nomor rekening berhasil disalin: " + nomor);
+        }
+
+        // --- KONTROL NAVIGASI BAWAH & FADE OUT AUDIO ---
+        let navSudahMuncul = false;
+
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('nav-bawah');
+            const sectionRsvp = document.getElementById('rsvp');
+            
+            if (sectionRsvp && nav) {
+                // Diperbaiki menggunakan sectionRsvp.offsetTop agar akurat tanpa variabel ayat
+                const triggerPoint = sectionRsvp.offsetTop;
+
+                if (window.scrollY > (triggerPoint - 300)) {
+                    navSudahMuncul = true;
+                }
+
+                if (navSudahMuncul && window.scrollY > 200) {
+                    nav.classList.remove('translate-y-32', 'opacity-0');
+                    nav.classList.add('translate-y-0', 'opacity-100');
+                } else {
+                    nav.classList.add('translate-y-32', 'opacity-0');
+                    nav.classList.remove('translate-y-0', 'opacity-100');
+                }
+            } 
+
+            if (sectionRsvp && typeof bgm !== 'undefined' && bgm !== null) {
+                const rectRsvp = sectionRsvp.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                if (rectRsvp.top < windowHeight) {
+                    const fadeRatio = Math.max(0, (windowHeight - rectRsvp.top) / windowHeight);
+                    const newVolume = Math.max(0.2, 1 - fadeRatio);
+                    bgm.volume = Math.min(Math.max(newVolume, 0.2), 1);
+                } else {
+                    bgm.volume = 1; 
+                }
+            }
+        });
+
+        // --- OBSERVER UNTUK HIGHLIGHT NAV MENU AKTIF ---
+        document.addEventListener("DOMContentLoaded", () => {
+            const sections = document.querySelectorAll("section");
+            const navLinks = document.querySelectorAll(".nav-link");
+
+            const options = {
+              root: null,
+              threshold: 0.6, 
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  const activeSectionId = entry.target.getAttribute("id");
+
+                  navLinks.forEach((link) => {
+                    link.classList.remove("text-[#0B2D57]", "font-semibold");
+                    link.classList.add("text-stone-400");
+                  });
+
+                  const activeLink = document.querySelector(`.nav-link[data-section="${activeSectionId}"]`);
+                  if (activeLink) {
+                    activeLink.classList.remove("text-stone-400");
+                    activeLink.classList.add("text-[#0B2D57]", "font-semibold");
+                  }
+                }
+              });
+            }, options);
+
+            sections.forEach((section) => observer.observe(section));
+        });
+        
+        // --- TIMELINE GARIS ANIMASI ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const icons = document.querySelectorAll('.timeline-icon');
+            const garisLatar = document.getElementById('garis-latar');
+            const garisCerita = document.getElementById('garis-cerita');
+            const container = document.getElementById('timeline-container');
+            
+            function aturGarisTimeline() {
+                if (!icons.length || !garisLatar || !garisCerita || !container) return;
+                
+                const rectContainer = container.getBoundingClientRect();
+                const rectFirst = icons[0].getBoundingClientRect();
+                const rectLast = icons[icons.length - 1].getBoundingClientRect(); 
+                
+                const topPos = (rectFirst.top - rectContainer.top) + (rectFirst.height / 2);
+                const bottomPos = (rectLast.top - rectContainer.top) + (rectLast.height / 2);
+                const totalHeight = bottomPos - topPos;
+                
+                garisLatar.style.top = topPos + 'px';
+                garisLatar.style.height = totalHeight + 'px';
+                garisCerita.style.top = topPos + 'px';
+            }
+
+            function animasiScrollTimeline() {
+                if (!garisLatar || !garisCerita) return;
+                
+                const rectLatar = garisLatar.getBoundingClientRect();
+                const triggerPoint = window.innerHeight * 0.75; 
+                
+                let scrolled = triggerPoint - rectLatar.top;
+                const maxLineHeight = parseFloat(garisLatar.style.height) || 0;
+                
+                if (scrolled < 0) scrolled = 0;
+                if (scrolled > maxLineHeight) scrolled = maxLineHeight;
+                
+                garisCerita.style.height = scrolled + 'px';
+            }
+
+            window.addEventListener('load', aturGarisTimeline);
+            window.addEventListener('resize', aturGarisTimeline);
+            window.addEventListener('scroll', animasiScrollTimeline);
+            
+            setTimeout(() => {
+                aturGarisTimeline();
+                animasiScrollTimeline();
+            }, 300);
+        });
+    </script>
+</body>
+</html>
